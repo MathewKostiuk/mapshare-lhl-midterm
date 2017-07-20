@@ -5,6 +5,7 @@ require('dotenv').config();
 const MAP         = process.env.API_KEY;
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
+const GOOGLE_LOGIN= process.env.GOOGLE_CLIENT_ID;
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
@@ -41,7 +42,10 @@ app.use("/api/users", usersRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  let templateVars = {
+    GOOGLE_LOGIN: GOOGLE_LOGIN
+  }
+  res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {
