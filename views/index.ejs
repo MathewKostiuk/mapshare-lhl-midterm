@@ -36,29 +36,34 @@
         <div class="container-fluid" id="map-box">
           <div class="row align-items-center equal">
             <div class="col-md-2 well" id="left-col">
-            test
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
 
             </div>
+
+
               <div class="col-md-6 col-md-offset-1 well" id="map">
                 <!-- <img id="main-map" src="http://www.buzzhunt.co.uk/wp-content/2014/01/World-map-sizes.png" class="img-responsive"> -->
               </div>
             <div class="col-md-2 col-md-offset-1 well" id="right-col">
-            test
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             </div>
           </div>
         </div>
 
+<script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+     </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=<%= API %>&callback=initMap">
+    </script>
       <footer class="footer">
         <div class="container">
           <p class="text-muted">Wiki Maps copyright TM...</p>
