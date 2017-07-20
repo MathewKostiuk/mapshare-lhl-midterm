@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="/styles/test.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
 
+    <script type="text/javascript" src="/scripts/load-map.js"></script>
     <script type="text/javascript" src="/vendor/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="/scripts/load-map.js"></script>
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%=MAP_API%>&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%=MAP_API%>" async defer></script>
 
 
 
@@ -50,7 +50,7 @@
             </div>
 
 
-              <div class="col-md-6 col-md-offset-1 well" id="map">
+              <div class="col-md-6 col-md-offset-1 well" id="map" class="img-responsive">
                 <!-- <img id="main-map" src="http://www.buzzhunt.co.uk/wp-content/2014/01/World-map-sizes.png" class="img-responsive"> -->
               </div>
             <div class="col-md-2 col-md-offset-1 well" id="right-col">
