@@ -4,9 +4,7 @@ exports.up = function(knex, Promise) {
     table.string('name');
     table.string('description');
     table.string('image_url');
-    table.integer('list_id')
-    .references('id')
-    .inTable('lists');
+    table.integer('list_id');
   });
 };
 
