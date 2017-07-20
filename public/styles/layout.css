@@ -1,0 +1,18 @@
+body {
+  background-color: #EEE;
+}
+
+body h1 {
+  color: #244751;
+}
+
+#map {
+  height: 700px;
+}
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
+
