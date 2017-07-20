@@ -31,10 +31,10 @@ var beaches = [
 ];
 
 function setMarkers(map) {
-  for (var i = 0; i < beaches.length; i++) {
-    var beach = beaches[i];
+  for (var i = 0; i < points.length; i++) {
+    var points = points[i];
     var newMarker = new google.maps.Marker({
-      position: {lat: beach[1], lng: beach[2]},
+      position: {lat: points[1], lng: points[2]},
       map: map
     });
   }
