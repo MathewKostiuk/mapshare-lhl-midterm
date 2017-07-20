@@ -41,8 +41,7 @@ app.use("/api/users", usersRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  let templateVars = { API: MAP}
-  res.render("index", templateVars);
+  res.render("index");
 });
 
 app.listen(PORT, () => {
