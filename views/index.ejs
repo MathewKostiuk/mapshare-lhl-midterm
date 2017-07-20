@@ -37,9 +37,11 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <form action="/register" method="POST" style="margin:50px;">
-                <input id="userID" type="email" name="email" placeholder="Enter email" style="width: 300px">
-                <input id="regPass" type="password" name="password" placeholder="Enter password" style="width: 150px">
+
+              <form action="api/users/register" method="POST" style="margin:50px;">
+                <input id="username" type="username" name="username" placeholder="Enter Username" style="width: 150px">
+                <input id="userEmail" type="email" name="email" placeholder="Enter email" style="width: 200px">
+                <input id="regPassword" type="password" name="password" placeholder="Enter password" style="width: 150px">
                 <input type="submit" value="Register">
               </form>
 

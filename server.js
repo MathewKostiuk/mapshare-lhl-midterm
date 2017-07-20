@@ -43,11 +43,11 @@ app.use("/api/users", usersRoutes(knex));
 // Home page
 app.get("/", (req, res) => {
   let templateVars = {
-    GOOGLE_LOGIN: GOOGLE_LOGIN,
     MAP_API: MAP_API
   }
   res.render("index", templateVars);
 });
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
