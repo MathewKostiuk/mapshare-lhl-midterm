@@ -1,11 +1,11 @@
 
-$( function () {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done(function (users) {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });;
-});
+// $( function () {
+//   $.ajax({
+//     method: "GET",
+//     url: "/api/users"
+//   }).done(function (users) {
+//     for(user of users) {
+//       $("<div>").text(user.name).appendTo($("body"));
+//     }
+//   });;
+// });

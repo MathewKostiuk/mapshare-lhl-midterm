@@ -1,0 +1,9 @@
+#map {
+  height: 700px;
+}
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
