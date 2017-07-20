@@ -6,6 +6,7 @@ const MAP         = process.env.API_KEY;
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 const GOOGLE_LOGIN= process.env.GOOGLE_CLIENT_ID;
+const MAP_API     = process.env.MAP_API;
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
@@ -43,7 +44,8 @@ app.use("/api/users", usersRoutes(knex));
 // Home page
 app.get("/", (req, res) => {
   let templateVars = {
-    GOOGLE_LOGIN: GOOGLE_LOGIN
+    GOOGLE_LOGIN: GOOGLE_LOGIN,
+    MAP_API: MAP_API
   }
   res.render("index", templateVars);
 });
