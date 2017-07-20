@@ -12,30 +12,55 @@ $( function () {
   initMap();
 });
 
-
-  function initMap(json) {
-        var victoria_bc = {lat: 48.428, lng: -123.365};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: victoria_bc
-        });
-        setMarkers(map);
-      };
-
-var beaches = [
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 151.259052, 5],
-  ['Cronulla Beach', -34.028249, 151.157507, 3],
-  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  ['Maroubra Beach', -33.950198, 151.259302, 1]
-];
-
 function setMarkers(map) {
   for (var i = 0; i < points.length; i++) {
-    var points = points[i];
-    var newMarker = new google.maps.Marker({
-      position: {lat: points[1], lng: points[2]},
-      map: map
+    var point = points[i];
+    var marker = new google.maps.Marker({
+      position: {lat: point[1], lng: point[2]},
+      map: map,
+      content: point[0],
     });
+    var content = point[0];
+    var infowindow = new google.maps.InfoWindow();
+
+    google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){
+      return function() {
+
+        closeInfos();
+        infowindow.setContent(content);
+        infowindow.open(map, marker);
+        infos[0] = infowindow;
+
+      };
+
+    }(marker, content, infowindow)));
+
+  }
+}
+
+function initMap(json) {
+  var victoria_bc = {lat: 48.428, lng: -123.365};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: victoria_bc
+  });
+  setMarkers(map);
+}
+var infos = [];
+var points = [
+  ['Bondi Beach', 48.43, -123.00],
+  ['Coogee Beach', 48.57, -123.35],
+  ['Cronulla Beach', 48.59, -123.46],
+  ['Manly Beach', 48.48, -123.40],
+  ['Maroubra Beach', 48.64, -123.44]
+];
+
+
+function closeInfos() {
+
+  if (infos.length > 0) {
+    infos[0].set("marker", null);
+    infos[0].close();
+    infos.length = 0;
   }
 }
