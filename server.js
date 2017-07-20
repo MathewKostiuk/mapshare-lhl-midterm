@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 
+const MAP         = process.env.API_KEY;
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 const GOOGLE_LOGIN= process.env.GOOGLE_CLIENT_ID;
