@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 
+const MAP         = process.env.API_KEY;
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 const express     = require("express");
@@ -40,7 +41,7 @@ app.use("/api/users", usersRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  let templateVars = { API: process.env.API_KEY}
+  let templateVars = { API: MAP}
   res.render("index", templateVars);
 });
 
