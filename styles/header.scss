@@ -1,0 +1,45 @@
+  nav.nav-bar {
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid #eee;
+    border-radius: 5px;
+    display: flex;
+    margin: 10px 10px 20px 10px;
+    max-height: 80px;
+    min-height: 50px;
+    padding-left: 10px;
+    position: relative;
+  }
+
+  #login-form {
+    float: right;
+    margin: 5px;
+  }
+
+  #register-form {
+    float: right;
+    margin: 5px;
+  }
+
+  .email {
+    width: 175px;
+  }
+
+  .forms {
+    flex: 1;
+  }
+
+  .password {
+    width: 125px;
+  }
+
+  .title {
+    height: 80px;
+    flex: 0 0 40%;
+  }
+
+  .username {
+    width: 125px;
+  }
+
+
+

@@ -1,7 +1,18 @@
 body {
-  background-color: #EEE;
+  background-image: url("https://s-media-cache-ak0.pinimg.com/originals/cc/e0/c7/cce0c7db236b5e269c7721de801bb8f7.jpg");
+  background-position: center;
 
   h1 {
     color: #244751;
   }
+}
+
+#map {
+  height: 700px;
+}
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
 }

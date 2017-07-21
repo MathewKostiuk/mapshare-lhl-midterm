@@ -9,8 +9,8 @@
     <title>Wiki Maps</title>
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/test.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/styles/styles.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -25,38 +25,28 @@
   </head>
 
   <body>
-    <h1>Wiki Maps</h1>
-          <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+    <header>
+      <nav class="nav-bar">
+        <div class="title">
+          <h1>MapShare</h1>
+        </div>
+        <div class="forms">
             <!-- REGISTRATION FORM -->
-              <form id="register-form" action="api/users/register" method="POST" style="margin:50px;">
-                <input id="username" type="username" name="username" placeholder="Enter Username" style="width: 150px">
-                <input id="userEmail" type="email" name="email" placeholder="Enter email" style="width: 200px">
-                <input id="regPassword" type="password" name="password" placeholder="Enter password" style="width: 150px">
-                <input type="submit" value="Register">
-              </form>
-
-              <!-- LOGIN FORM -->
-              <form action="api/users/login" method="GET" style="margin:50px;">
-                <input id="username" type="name" name="name" placeholder="Enter username" style="width: 150px">
-                <input id="userPassword" type="password" name="password" placeholder="Enter password" style="width: 150px">
-                <input type="submit" value="Login">
-              </form>
-
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
+          <form id="register-form" action="api/users/register" method="POST">
+            <input class="username" type="name" name="username" placeholder="Enter Username">
+            <input class="email" type="email" name="email" placeholder="Enter email (Optional)">
+            <input class="password" type="password" name="password" placeholder="Enter password">
+            <input type="submit" value="Register">
+          </form>
+            <!-- LOGIN FORM -->
+          <form id="login-form" action="api/users/login" method="GET">
+            <input class="username" type="name" name="username" placeholder="Enter username">
+            <input class="password" type="password" name="password" placeholder="Enter password">
+            <input type="submit" value="Login">
+          </form>
+        </div>
       </nav>
+    </header>
         <div class="container-fluid" id="map-box">
           <div class="row align-items-center equal">
             <div class="col-md-2 well" id="left-col">
@@ -74,7 +64,7 @@
 
       <footer class="footer">
         <div class="container">
-          <p class="text-muted">Wiki Maps copyright TM...</p>
+          <p class="text-muted">MapShare copyright 2017</p>
         </div>
       </footer>
 
