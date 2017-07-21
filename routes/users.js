@@ -1,26 +1,26 @@
 "use strict";
 
-const express = require('express');
+const express = require("express");
 const router  = express.Router();
 
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    db.viewTable('users')
+    db.viewTable("users")
       .then((results) => {
         res.json(results);
       });
   });
 
   router.get("/:id", (req, res) => {
-    db.findInTable('users', 'id', req.params.id)
+    db.findInTable("users", "id", req.params.id)
       .then((results) => {
         res.json(results);
       });
   });
 
   router.get("/login/:name", (req, res) => {
-    db.findInTable('users', 'name', req.params.name)
+    db.findInTable("users", "name", req.params.name)
       .then((results) => {
         res.json(results);
       });
@@ -36,7 +36,7 @@ module.exports = (db) => {
       email: req.body.email,
       password: req.body.password
     };
-    db.addToTable('users', newUser);
+    db.addToTable("users", newUser);
   });
 
 

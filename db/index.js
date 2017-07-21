@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const ENV         = process.env.ENV || "development";
 const knexConfig  = require("../knexfile");
@@ -20,7 +20,7 @@ const viewTable = (table) => {
 };
 
 const findInTable = (table, column, match) => {
-  console.log('searching');
+  console.log("searching");
   return knex.select().from(table)
     .where(column, match)
     .catch((err) => {
@@ -36,7 +36,7 @@ const findInTable = (table, column, match) => {
 // {keyname: value, otherkeyname: othervalue}
 // these pairs will be added to specified table
 const addToTable = (table, keyValuePairs) => {
-  console.log('updating');
+  console.log("updating");
   knex.insert(keyValuePairs)
     .into(table)
     .catch((err) => {
@@ -45,7 +45,7 @@ const addToTable = (table, keyValuePairs) => {
       }
     })
     .then(() => {
-      console.log('updated');
+      console.log("updated");
     }).finally(() => {
       return knex.destroy();
     });
@@ -57,8 +57,8 @@ const addToTable = (table, keyValuePairs) => {
 ///                                                   /////
 ///////////////////////////////////////////////////////////
 const generateRandomString = () => {
-  let output = '';
-  const base = '0123456789';
+  let output = "";
+  const base = "0123456789";
   for (let i = 0; i < 6; i++) {
     const index = Math.floor(Math.random() * base.length);
     output += base[index];
