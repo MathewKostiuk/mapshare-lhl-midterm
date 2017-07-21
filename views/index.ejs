@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="google-signin-client_id" content="<%=GOOGLE_LOGIN%>.apps.googleusercontent.com">
+
 
 
     <title>Wiki Maps</title>
@@ -17,6 +17,7 @@
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%=MAP_API%>"></script>
+
 
 
 
@@ -37,16 +38,18 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <div class="g-signin2" data-onsuccess="onSignIn"></div>
-              <a href="#" onclick="signOut();">Sign out</a>
-              <script>
-                function signOut() {
-                  var auth2 = gapi.auth2.getAuthInstance();
-                  auth2.signOut().then(function () {
-                    console.log('User signed out.');
-                  });
-                }
-              </script>
+
+              <form id="register-form" action="api/users/register" method="POST" style="margin:50px;">
+                <input id="username" type="username" name="username" placeholder="Enter Username" style="width: 150px">
+                <input id="userEmail" type="email" name="email" placeholder="Enter email" style="width: 200px">
+                <input id="regPassword" type="password" name="password" placeholder="Enter password" style="width: 150px">
+                <input type="submit" value="Register">
+              </form>
+              <form action="api/users/login" method="POST" style="margin:50px;">
+                <input id="userID" type="username" name="username" placeholder="Enter username" style="width: 150px">
+                <input id="userPass" type="password" name="password" placeholder="Enter password" style="width: 150px">
+                <input type="submit" value="Login">
+              </form>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

@@ -1,3 +1,8 @@
+const $form = $("#register-form");
+$form.on("submit", function(event) {
+  event.preventDefault();
+});
+
 var infos = [];
 var formStr = "<form action='/items/new/' method='POST' id='newItem'><input type='text' id='markerName' placeholder='Name:'/><br><input type='text' id='markerDescription' placeholder='Description:'/><br><input type='text' id='markerImage' placeholder='Image URL:'/><br><input type='button' value='submit'/></form>"
 var textBox = [];
