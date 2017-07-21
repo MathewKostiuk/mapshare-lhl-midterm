@@ -51,7 +51,7 @@ function setMarkers(map) {
 
     google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){
       return function() {
-var contentString = "<p>This is a test</p><p>To see if the description works</p><img src='https://www.mathconsult.ch/static/unipoly/33.256.gif'>"
+        var contentString = "<p>This is a test</p><p>To see if the description works</p><img src='https://www.mathconsult.ch/static/unipoly/33.256.gif'>"
         closeInfos();
         infowindow.setContent(contentString);
         infowindow.open(map, marker);
@@ -74,22 +74,40 @@ function initMap() {
     var infowindow = new google.maps.InfoWindow();
     var latitude = event.latLng.lat();
     var longitude = event.latLng.lng();
-    var formStr = "<form action='/items/new' method='POST' id='new-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='new-item'/></form>"
+    var formStr = `<form action='/items/new' method='POST' id='new-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='text' name='lat' value=${latitude} readonly><input type='text' name='long' value=${longitude} readonly><input type='submit' value='new-item'/></form>`
 
     infowindow.setContent(formStr);
     infowindow.setPosition(event.latLng);
     infowindow.open(map);
-    $('#new-item').attr('lat', latitude);
-    $('#new-item').attr('long', longitude);
     textBox[0] = infowindow;
     console.log(latitude + ', ' + longitude);
     var $newItem = $('#new-item');
-    $newItem.on("submit", function(event) {
-    closeInfos();
-    });
+    $newItem.on("submit", handleNewItem);
   });
 }
 
+function handleNewItem(event) {
+  event.preventDefault();
+  var form = $(this).serializeArray();
+  console.log(form);
+  var nameLength = $('#markerName').val().length;
+  // var descriptionLength = $('markerDescription').val().length;
+
+  if (nameLength === 0) {
+    return $.notify('Please enter a name for your location', 'error');
+  }
+
+  // if (descriptionLength === 0) {
+    // return $.notify('Please enter a description for the location', 'warn');
+  // }
+
+  $.ajax({
+    type: 'POST',
+    url: '/items/new',
+    data: form
+  })
+    .done(closeTextBox());
+};
 
 
 
@@ -100,7 +118,7 @@ $( function () {
     url: "/api/users"
   }).done(function (users) {
     for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
+      $("<a>").text(user.name).append("<br>").appendTo($("#left-col"));
     }
   });
   initMap();
