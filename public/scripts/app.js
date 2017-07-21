@@ -81,7 +81,6 @@ function initMap() {
     infowindow.setPosition(event.latLng);
     infowindow.open(map);
     textBox[0] = infowindow;
-    console.log(latitude + ', ' + longitude);
     var $newItem = $('#new-item');
     $newItem.on("submit", handleNewItem);
   });
@@ -94,9 +93,11 @@ function handleNewItem(event) {
   var nameLength = $('#markerName').val().length;
   // var descriptionLength = $('markerDescription').val().length;
 
-  if (nameLength === 0) {
-    return $.notify('Please enter a name for your location', 'error');
-  }
+// ADD FLASH MESSAGES WHEN WE HAVE MORE TIME
+
+  // if (nameLength === 0) {
+  //   return $.notify('Please enter a name for your location', 'error');
+  // }
 
   // if (descriptionLength === 0) {
     // return $.notify('Please enter a description for the location', 'warn');
