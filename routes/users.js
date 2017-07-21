@@ -33,6 +33,7 @@ module.exports = (db) => {
     db.findInTable('users', 'name', req.params.name)
       .then((results) => {
         res.json(results);
+        console.log(results);
       });
   });
 
