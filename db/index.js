@@ -46,6 +46,8 @@ const addToTable = (table, keyValuePairs) => {
     })
     .then(() => {
       console.log('updated');
+    }).finally(() => {
+      return knex.destroy();
     });
 };
 
