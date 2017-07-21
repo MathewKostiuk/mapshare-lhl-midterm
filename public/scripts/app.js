@@ -6,10 +6,7 @@ $form.on("submit", function(event) {
 
 var infos = [];
 var formStr = "<form action='/items/new/' method='POST' id='newItem'><input name type='text' id='markerName' placeholder='Name:'/><br><input name=text type='text' id='markerDescription' placeholder='Description:'/><br><input name='img_url' type='text' id='markerImage' placeholder='Image URL:'/><br><input type='submit' value='submit'/></form>"
-<<<<<<< Updated upstream
-=======
 var textBox = [];
->>>>>>> Stashed changes
 
 var points = [
   ['Bondi Beach', 48.43, -123.00],
