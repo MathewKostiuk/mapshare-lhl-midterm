@@ -1,12 +1,12 @@
 "use strict";
 
-const express = require('express');
+const express = require("express");
 const router  = express.Router();
 
 module.exports = (db) => {
 
   router.get("/:id", (req, res) => {
-    db.findInTable('items', 'id', req.params.id)
+    db.findInTable("items", "id", req.params.id)
       .then((results) => {
         res.json(results);
       });
@@ -21,7 +21,7 @@ module.exports = (db) => {
       latitude: req.body.lat,
       longitude: req.body.long
     };
-    db.addToTable('lists', newItem);
+    db.addToTable("lists", newItem);
   });
 
   return router;
