@@ -51,4 +51,19 @@ const addToTable = (table, keyValuePairs) => {
     });
 };
 
-module.exports = {knex, viewTable, findInTable, addToTable};
+///////////////////////////////////////////////////////////
+/////                                                   ///
+//// other helper functions for database communication ////
+///                                                   /////
+///////////////////////////////////////////////////////////
+const generateRandomString = () => {
+  let output = '';
+  const base = '0123456789';
+  for (let i = 0; i < 6; i++) {
+    const index = Math.floor(Math.random() * base.length);
+    output += base[index];
+  }
+  return output;
+};
+
+module.exports = {knex, viewTable, findInTable, addToTable, generateRandomString};
