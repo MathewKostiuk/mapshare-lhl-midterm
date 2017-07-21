@@ -35,7 +35,6 @@ function setMarkers(map) {
         infowindow.open(map, marker);
         infos[0] = infowindow;
       };
-
     }(marker, content, infowindow)));
   }
 }
@@ -56,7 +55,7 @@ function initMap(json) {
 
 
 
-
+// Document Ready
 $( function () {
   $.ajax({
     method: "GET",
