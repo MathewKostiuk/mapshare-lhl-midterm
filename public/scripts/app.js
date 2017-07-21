@@ -1,4 +1,5 @@
 var infos = [];
+
 var points = [
   ['Bondi Beach', 48.43, -123.00],
   ['Coogee Beach', 48.57, -123.35],
@@ -39,10 +40,6 @@ function setMarkers(map) {
   }
 }
 
-
-
-
-
 function initMap(json) {
   var victoriaBc = {lat: 48.428, lng: -123.365};
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -50,7 +47,15 @@ function initMap(json) {
     center: victoriaBc
   });
   setMarkers(map);
+google.maps.event.addListener(map, "click", function (event) {
+  var latitude = event.latLng.lat();
+  var longitude = event.latLng.lng();
+  console.log(latitude + ', ' + longitude);
+});
 }
+
+
+
 
 $( function () {
   $.ajax({
