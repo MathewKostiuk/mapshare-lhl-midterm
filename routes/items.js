@@ -5,6 +5,13 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
+  router.get("/:id", (req, res) => {
+    db.findInTable('items', 'id', req.params.id)
+      .then((results) => {
+        res.json(results);
+      });
+  });
+
   router.post("/new", (req, res) => {
     const newItem = {
       id: db.generateRandomString(),
@@ -13,8 +20,9 @@ module.exports = (db) => {
       image_url: req.body.image,
       latitude: req.body.lat,
       longitude: req.body.long
-    }
-  })
+    };
+    db.addToTable('lists', newItem);
+  });
 
   return router;
 };
