@@ -12,6 +12,8 @@ module.exports = (db) => {
       });
   });
 
+
+
   router.get("/:id", (req, res) => {
     db.findInTable("items", "list_id", req.params.id)
       .then((results) => {
