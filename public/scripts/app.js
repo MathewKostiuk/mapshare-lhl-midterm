@@ -51,9 +51,9 @@ function setMarkers(map) {
 
     google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){
       return function() {
-
+var contentString = "<p>This is a test</p><p>To see if the description works</p><img src='https://www.mathconsult.ch/static/unipoly/33.256.gif'>"
         closeInfos();
-        infowindow.setContent(content);
+        infowindow.setContent(contentString);
         infowindow.open(map, marker);
         infos[0] = infowindow;
       };
