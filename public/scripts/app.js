@@ -1,3 +1,8 @@
+const $form = $("#register-form");
+$form.on("submit", function(event) {
+  event.preventDefault();
+});
+
 var infos = [];
 
 var points = [
