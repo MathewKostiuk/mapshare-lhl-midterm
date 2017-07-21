@@ -13,6 +13,7 @@ module.exports = (db) => {
   });
 
   router.post("/new", (req, res) => {
+    console.log(req.body.name);
     const newItem = {
       id: db.generateRandomString(),
       name: req.body.name,
@@ -21,7 +22,7 @@ module.exports = (db) => {
       latitude: req.body.lat,
       longitude: req.body.long
     };
-    db.addToTable('lists', newItem);
+    db.addToTable('items', newItem);
   });
 
   return router;
