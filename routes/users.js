@@ -27,6 +27,9 @@ module.exports = (db) => {
   });
 
   router.post("/register", (req, res) => {
+    if (db.findInTable("users", "name", req.body.name)) {
+      return Promise.reject({message: "username is not unique"});
+    }
     const newUser = {
       id: db.generateRandomString(),
       name: req.body.username,

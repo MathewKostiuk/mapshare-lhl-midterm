@@ -66,4 +66,6 @@ const generateRandomString = () => {
   return output;
 };
 
+
+
 module.exports = {knex, viewTable, findInTable, addToTable, generateRandomString};
