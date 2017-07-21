@@ -2,6 +2,9 @@
 
 const express = require("express");
 const router  = express.Router();
+const bcrypt = require('bcrypt');
+
+
 
 module.exports = (db) => {
 
@@ -19,24 +22,33 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/login/:name", (req, res) => {
-    db.findInTable("users", "name", req.params.name)
+  router.post("/login", (req, res) => {
+    const user = req.body.username;
+    const password = req.body.password;
+    db.findInTable("users", "name", user)
       .then((results) => {
-        res.json(results);
+
       });
+    req.session.userId = id;
   });
 
   router.post("/register", (req, res) => {
-    if (db.findInTable("users", "name", req.body.name)) {
-      return Promise.reject({message: "username is not unique"});
-    }
     const newUser = {
       id: db.generateRandomString(),
       name: req.body.username,
       email: req.body.email,
-      password: req.body.password
+      password: bcrypt.hashSync(req.body.password, 10)
     };
-    db.addToTable("users", newUser);
+    db.findInTable("users", "name", req.body.username)
+      .then((results) => {
+        if (results.length) {
+          res.status(400).send("Sorry user with that email already exists");
+        } else if (name && password){
+          db.addToTable("users", newUser);
+        } else {
+          res.status(400).send("Email and Password cannot be empty");
+        }
+      })
   });
 
 

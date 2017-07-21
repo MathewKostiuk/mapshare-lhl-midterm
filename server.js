@@ -15,6 +15,7 @@ const app         = express();
 const db          = require('./db');
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const cookieSession = require("cookie-session");
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -28,6 +29,10 @@ app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(db.knex));
+
+app.use(cookieSession({
+  keys: ['purple', 'elephant']
+}));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));

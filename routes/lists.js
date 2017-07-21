@@ -12,6 +12,13 @@ module.exports = (db) => {
       });
   });
 
+  // get favourite lists
+
+
+  // get your lists
+
+
+  // get contributions
 
 
   router.get("/:id", (req, res) => {
