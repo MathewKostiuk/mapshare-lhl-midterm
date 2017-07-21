@@ -47,11 +47,11 @@ function initMap(json) {
     center: victoriaBc
   });
   setMarkers(map);
-google.maps.event.addListener(map, "click", function (event) {
-  var latitude = event.latLng.lat();
-  var longitude = event.latLng.lng();
-  console.log(latitude + ', ' + longitude);
-});
+  google.maps.event.addListener(map, "click", function (event) {
+    var latitude = event.latLng.lat();
+    var longitude = event.latLng.lng();
+    console.log(latitude + ', ' + longitude);
+  });
 }
 
 
