@@ -13,8 +13,6 @@ module.exports = (db) => {
   });
 
   router.post("/new", (req, res) => {
-    console.log(req.body);
-    // console.log(req);
     const newItem = {
       id: db.generateRandomString(),
       name: req.body.name,

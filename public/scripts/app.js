@@ -117,10 +117,10 @@ function handleNewItem(event) {
 $( function () {
   $.ajax({
     method: "GET",
-    url: "/api/users"
-  }).done(function (users) {
-    for(user of users) {
-      $("<a>").text(user.name).append("<br>").appendTo($("#left-col"));
+    url: "/lists"
+  }).done(function (lists) {
+    for(list of lists) {
+      $("<a>").text(list.name).append("<br>").appendTo($("#left-col"));
     }
   });
   initMap();
