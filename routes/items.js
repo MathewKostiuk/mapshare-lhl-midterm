@@ -1,18 +1,19 @@
 "use strict";
 
-const express = require('express');
+const express = require("express");
 const router  = express.Router();
 
 module.exports = (db) => {
 
   router.get("/:id", (req, res) => {
-    db.findInTable('items', 'id', req.params.id)
+    db.findInTable("items", "id", req.params.id)
       .then((results) => {
         res.json(results);
       });
   });
 
   router.post("/new", (req, res) => {
+    console.log(req.body.name);
     const newItem = {
       id: db.generateRandomString(),
       name: req.body.name,
@@ -21,7 +22,7 @@ module.exports = (db) => {
       latitude: req.body.lat,
       longitude: req.body.long
     };
-    db.addToTable('lists', newItem);
+    db.addToTable('items', newItem);
   });
 
   return router;
