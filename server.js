@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 
+const MAP         = process.env.API_KEY;
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 
@@ -11,8 +12,7 @@ const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
+const db          = require('./db');
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
@@ -25,7 +25,7 @@ const usersRoutes = require("./routes/users");
 app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
-app.use(knexLogger(knex));
+app.use(knexLogger(db.knex));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,7 +38,7 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
+app.use("/api/users", usersRoutes(db));
 
 // Home page
 app.get("/", (req, res) => {
