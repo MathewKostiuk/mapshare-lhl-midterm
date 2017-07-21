@@ -10,7 +10,16 @@ const knex        = require("knex")(knexConfig[ENV]);
 ////  exported to server.js, intended to be passed to routes /////
 ///                                                         //////
 //////////////////////////////////////////////////////////////////
-const findInDatabase = (table, column, match) => {
+const viewTable = (table) => {
+  return knex.select().from(table)
+    .catch((err) => {
+      if (err) {
+        return console.error(err);
+      }
+    });
+};
+
+const findInTable = (table, column, match) => {
   console.log('searching');
   return knex.select().from(table)
     .where(column, match)
@@ -26,7 +35,7 @@ const findInDatabase = (table, column, match) => {
 // takes an object of key value pairs in the format of:
 // {keyname: value, otherkeyname: othervalue}
 // these pairs will be added to specified table
-const addToDatabase = (table, keyValuePairs) => {
+const addToTable = (table, keyValuePairs) => {
   console.log('updating');
   knex.insert(keyValuePairs)
     .into(table)
@@ -37,7 +46,7 @@ const addToDatabase = (table, keyValuePairs) => {
     })
     .then(() => {
       console.log('updated');
-    })
-}
+    });
+};
 
-module.exports = {knex, findInDatabase, addToDatabase};
+module.exports = {knex, viewTable, findInTable, addToTable};
