@@ -1,5 +1,5 @@
 var infos = [];
-var formStr = "<form action='/items/new/' method='POST' id='newItem'><input type='text' id='markerName' placeholder='Name:'/><br><input type='text' id='markerDescription' placeholder='Description:'/><br><input type='text' id='markerImage' placeholder='Image URL:'/><br><input type='button' value='submit'/></form>"
+var formStr = "<form action='/items/new/' method='POST' id='newItem'><input name type='text' id='markerName' placeholder='Name:'/><br><input name=text type='text' id='markerDescription' placeholder='Description:'/><br><input name='img_url' type='text' id='markerImage' placeholder='Image URL:'/><br><input type='button' value='submit'/></form>"
 var textBox = [];
 
 var points = [
@@ -69,10 +69,13 @@ function initMap() {
     var infowindow = new google.maps.InfoWindow();
     var latitude = event.latLng.lat();
     var longitude = event.latLng.lng();
-    var formStr = "<form><input type='text' id='markerName' placeholder='Name:'/><br><input type='text' id='markerDescription' placeholder='Description:'/><br><input type='text' id='markerImage' placeholder='Image URL:'/><br><input type='button' value='submit'/></form>"
+    var formStr = "<form action='/items/new/' method='POST' id='newItem'><input name type='text' id='markerName' placeholder='Name:'/><br><input name=text type='text' id='markerDescription' placeholder='Description:'/><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'/><br><input type='button' value='submit'/></form>"
+
     infowindow.setContent(formStr);
     infowindow.setPosition(event.latLng);
     infowindow.open(map);
+    $('#newItem').attr('lat', latitude);
+    $('#newItem').attr('long', longitude);
     textBox[0] = infowindow;
     console.log(latitude + ', ' + longitude);
   });
