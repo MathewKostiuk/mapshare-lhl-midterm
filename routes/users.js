@@ -1,29 +1,35 @@
 "use strict";
 
-const express = require('express');
+const express = require("express");
 const router  = express.Router();
+const bcrypt = require('bcrypt');
+
+
 
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    db.viewTable('users')
+    db.viewTable("users")
       .then((results) => {
         res.json(results);
       });
   });
 
   router.get("/:id", (req, res) => {
-    db.findInTable('users', 'id', req.params.id)
+    db.findInTable("users", "id", req.params.id)
       .then((results) => {
         res.json(results);
       });
   });
 
-  router.get("/login/:name", (req, res) => {
-    db.findInTable('users', 'name', req.params.name)
+  router.post("/login", (req, res) => {
+    const user = req.body.username;
+    const password = req.body.password;
+    db.findInTable("users", "name", user)
       .then((results) => {
-        res.json(results);
+
       });
+    req.session.userId = id;
   });
 
   router.post("/register", (req, res) => {
@@ -31,9 +37,18 @@ module.exports = (db) => {
       id: db.generateRandomString(),
       name: req.body.username,
       email: req.body.email,
-      password: req.body.password
+      password: bcrypt.hashSync(req.body.password, 10)
     };
-    db.addToTable('users', newUser);
+    db.findInTable("users", "name", req.body.username)
+      .then((results) => {
+        if (results.length) {
+          res.status(400).send("Sorry user with that email already exists");
+        } else if (name && password){
+          db.addToTable("users", newUser);
+        } else {
+          res.status(400).send("Email and Password cannot be empty");
+        }
+      })
   });
 
 
