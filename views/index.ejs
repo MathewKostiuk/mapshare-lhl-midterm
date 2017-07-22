@@ -36,39 +36,38 @@
         </div>
         <div class="forms">
             <!-- REGISTRATION FORM -->
-          <form id="register-form" action="api/users/register" method="POST">
+          <form id="register-form" class="form" action="api/users/register" method="POST">
             <input class="username" type="name" name="username" placeholder="Enter Username">
             <input class="email" type="email" name="email" placeholder="Enter email (Optional)">
             <input class="password" type="password" name="password" placeholder="Enter password">
             <input type="submit" value="Register">
           </form>
             <!-- LOGIN FORM -->
-          <form id="login-form" action="api/users/login" method="POST">
+          <form id="login-form" class="form" action="api/users/login" method="POST">
             <input class="username" type="name" name="username" placeholder="Enter username">
             <input class="password" type="password" name="password" placeholder="Enter password">
             <input type="submit" value="Login">
           </form>
             <!-- LOGOUT FORM -->
-          <form id="logout-form" action="api/users/logout" method="POST">
+          <form id="logout-form" class="form" action="api/users/logout" method="POST">
             <input type="submit" value="Logout">
           </form>
         </div>
       </nav>
     </header>
         <div class="container-fluid" id="map-box">
-          <div class="row align-items-center equal">
-            <div class="col-md-2 well" id="left-col">
-
-            </div>
-
-
-              <div class="bar-left col-md-6 col-md-offset-1" id="map" class="img-responsive">
-
-              </div>
-            <div class="bar-right col-md-2 col-md-offset-1" id="right-col">
-            </div>
+          <div class="row align-items-center no-gutters">
+            <div class="bar-left col-xs-2" id="left-col"></div>
+            <!-- <div class="col-md-1"></div> -->
+            <div class="col-xs-9 "" id="map"></div>
           </div>
         </div>
+          <!-- <div class="row align-items-center">
+            <div class="bar-left side-bar col-md-2" id="left-col"></div>
+            <div class="col-md-8 col-md-offset-1" id="map" class="img-responsive"></div>
+            <div class="bar-right side-bar col-md-2 col-md-offset-1" id="right-col">
+            </div>
+          </div> -->
 
       <footer class="footer-block">
         <div>

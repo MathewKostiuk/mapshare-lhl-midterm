@@ -4,30 +4,23 @@
     border-radius: 5px;
     display: flex;
     margin: 10px 10px 20px 10px;
-    max-height: 80px;
-    min-height: 50px;
+    height: 80px;
     padding-left: 10px;
-    position: relative;
+    top: 0px;
+    left: 0px;
   }
 
-  #login-form {
-    float: right;
-    margin: 5px;
-  }
-
-  #logout-form {
-    float: right;
-    margin: 5px;
-
-  }
-
-  #register-form {
-    float: right;
-    margin: 5px;
+  h1 {
+    color: #244751;
   }
 
   .email {
     width: 175px;
+  }
+
+  .form {
+    float: right;
+    margin: 5px;
   }
 
   .forms {
@@ -39,7 +32,6 @@
   }
 
   .title {
-    height: 80px;
     flex: 0 0 40%;
   }
 
