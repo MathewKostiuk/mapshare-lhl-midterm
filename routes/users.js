@@ -4,9 +4,8 @@ const express = require("express");
 const router  = express.Router();
 const bcrypt = require('bcrypt');
 
-
-
 module.exports = (db) => {
+
 
   router.get("/", (req, res) => {
     db.viewTable("users")
@@ -27,10 +26,18 @@ module.exports = (db) => {
     const password = req.body.password;
     db.findInTable("users", "name", user)
       .then((results) => {
-
-      });
-    req.session.userId = id;
+        if (!user) {
+          res.status(400).json({message: "username and password cannot be empty"})
+        } else if (bcrypt.compareSync(password, results[0].password)) {
+          req.session.userId = results[0].id;
+          res.status(200).json({message: "logged in"});
+        } else {
+          res.status(400).json({message: "username or password incorrect"});
+        }
+      })
   });
+
+  // logout route
 
   router.post("/register", (req, res) => {
     const newUser = {
@@ -42,11 +49,15 @@ module.exports = (db) => {
     db.findInTable("users", "name", req.body.username)
       .then((results) => {
         if (results.length) {
-          res.status(400).send("Sorry user with that email already exists");
-        } else if (name && password){
-          db.addToTable("users", newUser);
+          res.status(400).json({message: "user with that name already exists"});
+        } else if (newUser.name && newUser.password){
+          db.addToTable("users", newUser)
+            .then(() => {
+              req.session.userId = newUser.id;
+              res.status(200).json({message: "user added"});
+            });
         } else {
-          res.status(400).send("Email and Password cannot be empty");
+          res.status(400).json({message: "username and email cannot be empty"});
         }
       })
   });
