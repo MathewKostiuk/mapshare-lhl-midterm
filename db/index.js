@@ -32,9 +32,31 @@ const findInTable = (table, column, match) => {
     });
 };
 
-// takes an object of key value pairs in the format of:
-// {keyname: value, otherkeyname: othervalue}
-// these pairs will be added to specified table
+/////////////////////////////////////////////////////////////
+/////                                                     ///
+//// arr1 and arr2 are array in format [column, value]   ////
+///                                                     /////
+/////////////////////////////////////////////////////////////
+const deleteFromTable = (table, arr1, arr2) => {
+  if (!arr2) {
+    return knex(table)
+      .where(arr1[0], arr1[1])
+      .del();
+  } else {
+    return knex(table)
+      .where(arr1[0], arr1[1])
+      .andWhere(arr2[0], arr2[1])
+      .del();
+  }
+}
+
+////////////////////////////////////////////////////////////////
+///////                                                      ///
+////// takes an object of key value pairs in the format of: ////
+/////  {keyname: value, otherkeyname: othervalue}          /////
+////   these pairs will be added to specified table       //////
+///                                                      ///////
+////////////////////////////////////////////////////////////////
 const addToTable = (table, keyValuePairs) => {
   console.log("updating");
   return knex.insert(keyValuePairs)
