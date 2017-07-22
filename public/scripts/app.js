@@ -140,14 +140,25 @@ function handleNewItem(event) {
 $( function () {
   console.log(items.length);
 
-  $.ajax({
-    method: "GET",
-    url: "/lists"
-  }).done(function (lists) {
+  // $.ajax({
+  //   method: "GET",
+  //   url: "/lists"
+  // })
+  utils.request("GET", "/lists").then(function (lists) {
     for(list of lists) {
       $("<a>").text(list.name).attr('id', list.id).append("<br>").appendTo($("#left-col"));
     }
   });
   initMap();
   setMarkers(map, items)
+
+  // $("#register-form").on("submit", function(event) {
+  //   const $form = $(this);
+  //   event.preventDefault();
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "/api/users/register"
+  //     data
+  //   })
+  // });
 });

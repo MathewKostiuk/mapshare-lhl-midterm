@@ -10,9 +10,12 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/vendor/jquery.flash.css">
     <link rel="stylesheet" href="/styles/styles.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="/vendor/jquery.flash.js"></script>
+    <script type="text/javascript" src="/scripts/utils.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -39,7 +42,7 @@
             <input type="submit" value="Register">
           </form>
             <!-- LOGIN FORM -->
-          <form id="login-form" action="api/users/login" method="GET">
+          <form id="login-form" action="api/users/login" method="POST">
             <input class="username" type="name" name="username" placeholder="Enter username">
             <input class="password" type="password" name="password" placeholder="Enter password">
             <input type="submit" value="Login">

@@ -38,6 +38,9 @@ module.exports = (db) => {
   });
 
   // logout route
+  router.post("/logout", (req, res) => {
+    req.session.userId = null;
+  });
 
   router.post("/register", (req, res) => {
     const newUser = {
