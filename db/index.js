@@ -94,4 +94,4 @@ const generateRandomString = () => {
 
 
 
-module.exports = {knex, viewTable, findInTable, addToTable, generateRandomString};
+module.exports = {knex, viewTable, findInTable, addToTable, generateRandomString, deleteFromTable, updateTable};

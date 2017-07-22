@@ -12,6 +12,16 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/:id", (req, res) => {
+    const newItem = {
+      name: req.body.name,
+      description: req.body.description,
+      image_url: req.body.img
+    };
+    const check = ["id", req.body.id];
+    db.updateTable("items", check, newItem);
+  });
+
   router.post("/new", (req, res) => {
     const newItem = {
       id: db.generateRandomString(),
