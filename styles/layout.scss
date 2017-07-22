@@ -2,13 +2,14 @@ body {
   background-image: url("https://s-media-cache-ak0.pinimg.com/originals/cc/e0/c7/cce0c7db236b5e269c7721de801bb8f7.jpg");
   background-position: center;
   height: 100vh;
-
-
+  padding: 2vh;
 }
 
 #map {
   border-radius: 5px;
-  height: 85vh;
+  height: 75vh;
+  float: right;
+  width: 80vw;
 
 }
 
