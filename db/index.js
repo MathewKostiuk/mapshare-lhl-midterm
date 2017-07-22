@@ -32,11 +32,11 @@ const findInTable = (table, column, match) => {
     });
 };
 
-/////////////////////////////////////////////////////////////
-/////                                                     ///
-//// arr1 and arr2 are array in format [column, value]   ////
-///                                                     /////
-/////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+/////                                                    ///
+//// arr1 and arr2 are arrays in format [column, value] ////
+///                                                    /////
+////////////////////////////////////////////////////////////
 const deleteFromTable = (table, arr1, arr2) => {
   if (!arr2) {
     return knex(table)
@@ -48,6 +48,12 @@ const deleteFromTable = (table, arr1, arr2) => {
       .andWhere(arr2[0], arr2[1])
       .del();
   }
+}
+
+const updateTable = (table, checkArr, newObj) => {
+  return knex(table)
+    .where(checkArr[0], checkArr[1])
+    .update(newObj);
 }
 
 ////////////////////////////////////////////////////////////////
