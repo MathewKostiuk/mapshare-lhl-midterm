@@ -44,6 +44,10 @@
             <input class="password" type="password" name="password" placeholder="Enter password">
             <input type="submit" value="Login">
           </form>
+            <!-- LOGOUT FORM -->
+          <form id="logout-form" action="api/users/logout" method="POST">
+            <input type="submit" value="Logout">
+          </form>
         </div>
       </nav>
     </header>
@@ -54,17 +58,17 @@
             </div>
 
 
-              <div class="col-md-6 col-md-offset-1 well" id="map" class="img-responsive">
+              <div class="bar-left col-md-6 col-md-offset-1" id="map" class="img-responsive">
 
               </div>
-            <div class="col-md-2 col-md-offset-1 well" id="right-col">
+            <div class="bar-right col-md-2 col-md-offset-1" id="right-col">
             </div>
           </div>
         </div>
 
-      <footer class="footer">
-        <div class="container">
-          <p class="text-muted">MapShare copyright 2017</p>
+      <footer class="footer-block">
+        <div>
+          <p class="footer-text">MapShare copyright 2017</p>
         </div>
       </footer>
 
