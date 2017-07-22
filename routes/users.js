@@ -26,19 +26,23 @@ module.exports = (db) => {
     const password = req.body.password;
     db.findInTable("users", "name", user)
       .then((results) => {
+        console.log('found');
         if (!user) {
-          res.status(400).json({message: "username and password cannot be empty"})
+          res.json({message: "username and password cannot be empty"})
+          return;
         } else if (bcrypt.compareSync(password, results[0].password)) {
           req.session.userId = results[0].id;
-          res.status(200).json({message: "logged in"});
+          res.json({message: "logged in"});
+          return;
         } else {
-          res.status(400).json({message: "username or password incorrect"});
+          res.json({message: "username or password incorrect"});
+          return;
         }
       })
   });
 
-  // logout route
   router.post("/logout", (req, res) => {
+    console.log(req.session.userId);
     req.session.userId = null;
   });
 
@@ -52,15 +56,18 @@ module.exports = (db) => {
     db.findInTable("users", "name", req.body.username)
       .then((results) => {
         if (results.length) {
-          res.status(400).json({message: "user with that name already exists"});
+          res.json({message: "user with that name already exists"});
+          return;
         } else if (newUser.name && newUser.password){
           db.addToTable("users", newUser)
             .then(() => {
               req.session.userId = newUser.id;
-              res.status(200).json({message: "user added"});
+              res.send();
+              return;
             });
         } else {
-          res.status(400).json({message: "username and email cannot be empty"});
+          res.json({message: "username and email cannot be empty"});
+          return;
         }
       })
   });
