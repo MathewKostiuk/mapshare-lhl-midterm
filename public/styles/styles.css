@@ -34,6 +34,11 @@ nav.nav-bar {
   margin: 5px;
 }
 
+#logout-form {
+  float: right;
+  margin: 5px;
+}
+
 #register-form {
   float: right;
   margin: 5px;
@@ -58,4 +63,20 @@ nav.nav-bar {
 
 .username {
   width: 125px;
+}
+
+.footer-block {
+  background-color: rgba(255, 255, 255, 0.75);
+  border: 1px solid #eee;
+  border-radius: 5px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 25px;
+  width: 100%;
+}
+
+.footer-text {
+  margin: 0 5px 10px;
+  text-align: center;
 }
