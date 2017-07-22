@@ -3,9 +3,8 @@ $form.on("submit", function(event) {
   event.preventDefault();
 });
 var map;
-
+var markerCount = [];
 var infos = [];
-// var formStr = "<form action='/items/new/' method='POST' id='newItem'><input name type='text' id='markerName' placeholder='Name:'/><br><input name=text type='text' id='markerDescription' placeholder='Description:'/><br><input name='img_url' type='text' id='markerImage' placeholder='Image URL:'/><br><input type='submit' value='submit'/></form>";
 var textBox = [];
 
 
@@ -46,6 +45,7 @@ function setMarkers(map, items) {
       position: {lat: item.latitude, lng: item.longitude},
       map: map
     });
+    markerCount.push(marker);
     bounds.extend(marker.position);
 
     var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'>`;
@@ -74,6 +74,7 @@ function handleNewItem(event) {
 }
 
 function initMap(items) {
+  console.log(items);
   var victoriaBc = {lat: 48.428, lng: -123.365};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
@@ -82,11 +83,12 @@ function initMap(items) {
   setMarkers(map, items);
 
   google.maps.event.addListener(map, "rightclick", function (event) {
+    if (markerCount.length === 0) {return};
     closeTextBox();
     var infowindow = new google.maps.InfoWindow();
     var latitude = event.latLng.lat();
     var longitude = event.latLng.lng();
-    var formStr = `<form action='/items/new' method='POST' id='new-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='text' name='lat' value=${latitude} readonly><input type='text' name='long' value=${longitude} readonly><input type='submit' value='Submit'/></form>`;
+    var formStr = `<form action='/items/new' method='POST' id='new-item'><input type='text' name='list_id' id='listId' value='${items[0].list_id}'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='text' name='lat' value=${latitude} readonly><input type='text' name='long' value=${longitude} readonly><input type='submit' value='Submit'/></form>`;
 
     infowindow.setContent(formStr);
     infowindow.setPosition(event.latLng);
