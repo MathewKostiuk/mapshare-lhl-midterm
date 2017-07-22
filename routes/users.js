@@ -27,7 +27,8 @@ module.exports = (db) => {
     const password = req.body.password;
     db.findInTable("users", "name", user)
       .then((results) => {
-
+        res.json(results);
+        console.log(results);
       });
     req.session.userId = id;
   });
