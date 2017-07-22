@@ -69,10 +69,10 @@ nav.nav-bar {
   background-color: rgba(255, 255, 255, 0.75);
   border: 1px solid #eee;
   border-radius: 5px;
-  position: fixed;
-  left: 0px;
   bottom: 0px;
   height: 25px;
+  left: 0px;
+  position: fixed;
   width: 100%;
 }
 
