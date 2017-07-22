@@ -141,8 +141,8 @@ var listsUrl = "/lists/";
 var items = '';
   utils.request("GET", "/lists").then(function (lists) {
     for(list of lists) {
-      $("<a>").text(list.name).attr('class', 'test').attr('id', list.id).append("<br>").appendTo($("#left-col"));
-      $('#left-col').on('click', '.test', function (event) {
+      $("<a>").text(list.name).attr('class', 'list-item').attr('id', list.id).append("<br>").appendTo($("#left-col"));
+      $('#left-col').on('click', '.list-item', function (event) {
         event.preventDefault();
         event.stopImmediatePropagation();
         var id = listsUrl + $(this).attr('id');
