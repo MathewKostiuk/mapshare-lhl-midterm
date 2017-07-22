@@ -138,19 +138,19 @@ function handleNewItem(event) {
 
 // Document Ready
 $( function () {
-  console.log(items.length);
 
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/lists"
-  // })
   utils.request("GET", "/lists").then(function (lists) {
     for(list of lists) {
       $("<a>").text(list.name).attr('id', list.id).append("<br>").appendTo($("#left-col"));
+      $(`${list.id}`).click(function () {
+        console.log(list.id);
+      })
     }
   });
   initMap();
   setMarkers(map, items)
+
+  utils.request("GET", "/")
 
   // $("#register-form").on("submit", function(event) {
   //   const $form = $(this);
