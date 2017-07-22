@@ -136,11 +136,12 @@ function handleNewItem(event) {
 
 // Document Ready
 $( function () {
-
+var test = '#';
   utils.request("GET", "/lists").then(function (lists) {
     for(list of lists) {
+      test += list.id;
       $("<a>").text(list.name).attr('id', list.id).append("<br>").appendTo($("#left-col"));
-      $(`${list.id}`).click(function () {
+      $('test').click(function () {
         console.log(list.id);
       })
     }
