@@ -82,18 +82,17 @@ function setMarkers(map, items) {
       position: {lat: item.latitude, lng: item.longitude},
       map: map
     });
-
-    var contentString = `<p>${item.name}</p><br><p>${item.description}</p><br><img src='${item.image_url}'>`
+    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'>`
+    marker.setMap(map);
     var infowindow = new google.maps.InfoWindow();
     infowindow.setContent(contentString);
-
-    google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){
+    google.maps.event.addListener(marker, 'click', (function(marker, infowindow){
       return function() {
         closeInfos();
         infowindow.open(map, marker);
         infos[0] = infowindow;
       };
-    }(marker, content, infowindow)));
+    }(marker, infowindow)));
   }
 }
 
@@ -138,25 +137,29 @@ function handleNewItem(event) {
 
 // Document Ready
 $( function () {
-  $.ajax({
-    method: "GET",
-    url: "/lists"
-  }).done(function (lists) {
+
+var test = '#';
+  utils.request("GET", "/lists").then(function (lists) {
     for(list of lists) {
-      click = list.id;
+      test += list.id;
       $("<a>").text(list.name).attr('id', list.id).append("<br>").appendTo($("#left-col"));
-      $('#' + list.id).on('click', function() {
-        $.ajax({
-          type: 'GET',
-          url: `/lists/${list.id}`,
-          data: click
-        })
-        .done(setMarkers);
-      });
+      $('test').click(function () {
+        console.log(list.id);
+      })
     }
   });
   initMap();
-  // setMarkers(map, items)
+
+
+  // $("#register-form").on("submit", function(event) {
+  //   const $form = $(this);
+  //   event.preventDefault();
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "/api/users/register"
+  //     data
+  //   })
+  // });
 });
 
 

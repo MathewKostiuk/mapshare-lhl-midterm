@@ -37,7 +37,7 @@ const findInTable = (table, column, match) => {
 // these pairs will be added to specified table
 const addToTable = (table, keyValuePairs) => {
   console.log("updating");
-  knex.insert(keyValuePairs)
+  return knex.insert(keyValuePairs)
     .into(table)
     .catch((err) => {
       if (err) {
@@ -46,8 +46,6 @@ const addToTable = (table, keyValuePairs) => {
     })
     .then(() => {
       console.log("updated");
-    }).finally(() => {
-      return knex.destroy();
     });
 };
 
