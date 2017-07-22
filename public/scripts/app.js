@@ -76,20 +76,20 @@ function closeTextBox(){
 function setMarkers(map, items) {
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
+    var content = item.name;
     console.log(item);
     var marker = new google.maps.Marker({
       position: {lat: item.latitude, lng: item.longitude},
       map: map
     });
-    marker.setMap(map);
-    // marker.setMap(map);
+
+    var contentString = `<p>${item.name}</p><br><p>${item.description}</p><br><img src='${item.image_url}'>`
     var infowindow = new google.maps.InfoWindow();
-    var content = '';
+    infowindow.setContent(contentString);
+
     google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){
       return function() {
-        var contentString = "<p>This is a test</p><p>To see if the description works</p><img src='https://www.mathconsult.ch/static/unipoly/33.256.gif'>"
         closeInfos();
-        infowindow.setContent(contentString);
         infowindow.open(map, marker);
         infos[0] = infowindow;
       };
@@ -105,7 +105,7 @@ function initMap() {
     zoom: 12,
     center: victoriaBc
   });
-  setMarkers(map, items);
+   setMarkers(map, items);
 
   google.maps.event.addListener(map, "click", function (event) {
     closeTextBox();
@@ -138,19 +138,25 @@ function handleNewItem(event) {
 
 // Document Ready
 $( function () {
-  console.log(items.length);
-
   $.ajax({
     method: "GET",
     url: "/lists"
   }).done(function (lists) {
     for(list of lists) {
-      var click = list.id;
+      click = list.id;
       $("<a>").text(list.name).attr('id', list.id).append("<br>").appendTo($("#left-col"));
+      $('#' + list.id).on('click', function() {
+        $.ajax({
+          type: 'GET',
+          url: `/lists/${list.id}`,
+          data: click
+        })
+        .done(setMarkers);
+      });
     }
   });
   initMap();
-  setMarkers(map, items)
+  // setMarkers(map, items)
 });
 
 
