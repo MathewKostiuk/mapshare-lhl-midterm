@@ -5,7 +5,7 @@ $form.on("submit", function(event) {
 var map;
 
 var infos = [];
-var formStr = "<form action='/items/new/' method='POST' id='newItem'><input name type='text' id='markerName' placeholder='Name:'/><br><input name=text type='text' id='markerDescription' placeholder='Description:'/><br><input name='img_url' type='text' id='markerImage' placeholder='Image URL:'/><br><input type='submit' value='submit'/></form>";
+// var formStr = "<form action='/items/new/' method='POST' id='newItem'><input name type='text' id='markerName' placeholder='Name:'/><br><input name=text type='text' id='markerDescription' placeholder='Description:'/><br><input name='img_url' type='text' id='markerImage' placeholder='Image URL:'/><br><input type='submit' value='submit'/></form>";
 var textBox = [];
 
 
@@ -81,7 +81,7 @@ function initMap(items) {
   });
   setMarkers(map, items);
 
-  google.maps.event.addListener(map, "click", function (event) {
+  google.maps.event.addListener(map, "rightclick", function (event) {
     closeTextBox();
     var infowindow = new google.maps.InfoWindow();
     var latitude = event.latLng.lat();
