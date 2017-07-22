@@ -13,12 +13,11 @@ module.exports = (db) => {
   });
 
   router.post("/new", (req, res) => {
-    console.log(req.body.name);
     const newItem = {
       id: db.generateRandomString(),
       name: req.body.name,
       description: req.body.description,
-      image_url: req.body.image,
+      image_url: req.body.img,
       latitude: req.body.lat,
       longitude: req.body.long
     };
