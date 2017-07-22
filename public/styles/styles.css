@@ -68,7 +68,7 @@ nav.nav-bar {
 .footer-block {
   background-color: rgba(255, 255, 255, 0.75);
   border: 1px solid #eee;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   bottom: 0px;
   height: 25px;
   left: 0px;
@@ -79,4 +79,16 @@ nav.nav-bar {
 .footer-text {
   margin: 0 5px 10px;
   text-align: center;
+}
+
+.bar-left {
+  background-color: rgba(255, 255, 255, 0.75);
+  border: 1px solid #eee;
+  border-radius: 0 5px 5px 0;
+}
+
+.bar-right {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid #eee;
+  border-radius: 5px 0px 0px 5px;
 }
