@@ -9,44 +9,44 @@ var formStr = "<form action='/items/new/' method='POST' id='newItem'><input name
 var textBox = [];
 
 
-var items = [
-{
-id: 1,
-name: "Pizza Palace",
-description: "it's pizza...",
-image_url: "",
-list_id: 1,
-latitude: 48.4953,
-longitude: -123.469
-},
-{
-id: 2,
-name: "Haunted Hotel",
-description: "it's haunted!",
-image_url: "",
-list_id: 2,
-latitude: 48.4791,
-longitude: -123.311
-},
-{
-id: 3,
-name: "The Guild",
-description: "cheap food and decent drinks",
-image_url: "",
-list_id: 3,
-latitude: 48.497,
-longitude: -123.371
-},
-{
-id: 4,
-name: "second slice",
-description: "garbage but cheap",
-image_url: "",
-list_id: 1,
-latitude: 48.4411,
-longitude: -123.491
-}
-];
+// var items = [
+// {
+// id: 1,
+// name: "Pizza Palace",
+// description: "it's pizza...",
+// image_url: "",
+// list_id: 1,
+// latitude: 48.4953,
+// longitude: -123.469
+// },
+// {
+// id: 2,
+// name: "Haunted Hotel",
+// description: "it's haunted!",
+// image_url: "",
+// list_id: 2,
+// latitude: 48.4791,
+// longitude: -123.311
+// },
+// {
+// id: 3,
+// name: "The Guild",
+// description: "cheap food and decent drinks",
+// image_url: "",
+// list_id: 3,
+// latitude: 48.497,
+// longitude: -123.371
+// },
+// {
+// id: 4,
+// name: "second slice",
+// description: "garbage but cheap",
+// image_url: "",
+// list_id: 1,
+// latitude: 48.4411,
+// longitude: -123.491
+// }
+// ];
 
 
 function closeInfos() {
@@ -104,7 +104,7 @@ function initMap() {
     zoom: 12,
     center: victoriaBc
   });
-   setMarkers(map, items);
+   // setMarkers(map, items);
 
   google.maps.event.addListener(map, "click", function (event) {
     closeTextBox();
@@ -137,15 +137,24 @@ function handleNewItem(event) {
 
 // Document Ready
 $( function () {
-
-var test = '#';
+var listsUrl = "/lists/";
+var items = '';
   utils.request("GET", "/lists").then(function (lists) {
     for(list of lists) {
-      test += list.id;
-      $("<a>").text(list.name).attr('id', list.id).append("<br>").appendTo($("#left-col"));
-      $('test').click(function () {
-        console.log(list.id);
-      })
+      $("<a>").text(list.name).attr('class', 'test').attr('id', list.id).append("<br>").appendTo($("#left-col"));
+      $('#left-col').on('click', '.test', function (event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        var id = listsUrl + $(this).attr('id');
+        utils.request("GET", id).then(function (items) {
+        var victoriaBc = {lat: 48.428, lng: -123.365};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: victoriaBc
+        });
+         setMarkers(map, items);
+        })
+      });
     }
   });
   initMap();
