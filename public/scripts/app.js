@@ -83,7 +83,6 @@ function setMarkers(map, items) {
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
     var content = item.name;
-    console.log(item);
     var marker = new google.maps.Marker({
       position: {lat: item.latitude, lng: item.longitude},
       map: map
