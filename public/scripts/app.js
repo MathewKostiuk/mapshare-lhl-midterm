@@ -9,46 +9,6 @@ var formStr = "<form action='/items/new/' method='POST' id='newItem'><input name
 var textBox = [];
 
 
-// var items = [
-// {
-// id: 1,
-// name: "Pizza Palace",
-// description: "it's pizza...",
-// image_url: "",
-// list_id: 1,
-// latitude: 48.4953,
-// longitude: -123.469
-// },
-// {
-// id: 2,
-// name: "Haunted Hotel",
-// description: "it's haunted!",
-// image_url: "",
-// list_id: 2,
-// latitude: 48.4791,
-// longitude: -123.311
-// },
-// {
-// id: 3,
-// name: "The Guild",
-// description: "cheap food and decent drinks",
-// image_url: "",
-// list_id: 3,
-// latitude: 48.497,
-// longitude: -123.371
-// },
-// {
-// id: 4,
-// name: "second slice",
-// description: "garbage but cheap",
-// image_url: "",
-// list_id: 1,
-// latitude: 48.4411,
-// longitude: -123.491
-// }
-// ];
-
-
 function closeInfos() {
   if (infos.length > 0) {
     infos[0].set("marker", null);
@@ -71,7 +31,6 @@ function closeTextBox(){
     textBox.length = 0;
   }
 }
-
 
 function setMarkers(map, items) {
   if (!items) {
@@ -103,7 +62,16 @@ function setMarkers(map, items) {
   map.fitBounds(bounds);
 }
 
-
+function handleNewItem(event) {
+  event.preventDefault();
+  var form = $(this).serializeArray();
+  $.ajax({
+    type: 'POST',
+    url: '/items/new',
+    data: form
+  })
+    .done(closeTextBox());
+}
 
 function initMap(items) {
   var victoriaBc = {lat: 48.428, lng: -123.365};
@@ -127,17 +95,6 @@ function initMap(items) {
     var $newItem = $('#new-item');
     $newItem.on("submit", handleNewItem);
   });
-}
-
-function handleNewItem(event) {
-  event.preventDefault();
-  var form = $(this).serializeArray();
-  $.ajax({
-    type: 'POST',
-    url: '/items/new',
-    data: form
-  })
-    .done(closeTextBox());
 }
 
 
