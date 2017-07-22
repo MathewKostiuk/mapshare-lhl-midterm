@@ -1,14 +1,12 @@
 body {
   background-image: url("https://s-media-cache-ak0.pinimg.com/originals/cc/e0/c7/cce0c7db236b5e269c7721de801bb8f7.jpg");
   background-position: center;
-}
-
-body h1 {
-  color: #244751;
+  height: 100vh;
 }
 
 #map {
-  height: 700px;
+  border-radius: 5px;
+  height: 85vh;
 }
 
 .equal {
@@ -23,29 +21,23 @@ nav.nav-bar {
   border-radius: 5px;
   display: flex;
   margin: 10px 10px 20px 10px;
-  max-height: 80px;
-  min-height: 50px;
+  height: 80px;
   padding-left: 10px;
-  position: relative;
+  top: 0px;
+  left: 0px;
 }
 
-#login-form {
-  float: right;
-  margin: 5px;
-}
-
-#logout-form {
-  float: right;
-  margin: 5px;
-}
-
-#register-form {
-  float: right;
-  margin: 5px;
+h1 {
+  color: #244751;
 }
 
 .email {
   width: 175px;
+}
+
+.form {
+  float: right;
+  margin: 5px;
 }
 
 .forms {
@@ -57,7 +49,6 @@ nav.nav-bar {
 }
 
 .title {
-  height: 80px;
   flex: 0 0 40%;
 }
 
@@ -70,8 +61,9 @@ nav.nav-bar {
   border: 1px solid #eee;
   border-radius: 5px 5px 0 0;
   bottom: 0px;
-  height: 25px;
+  height: 20px;
   left: 0px;
+  margin-top: 20px;
   position: fixed;
   width: 100%;
 }
@@ -83,12 +75,9 @@ nav.nav-bar {
 
 .bar-left {
   background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 5px;
   border: 1px solid #eee;
-  border-radius: 0 5px 5px 0;
-}
-
-.bar-right {
-  background-color: rgba(255, 255, 255, 0.85);
-  border: 1px solid #eee;
-  border-radius: 5px 0px 0px 5px;
+  height: 85vh;
+  margin-left: 10px;
+  padding: 10px;
 }
