@@ -81,19 +81,17 @@ function setMarkers(map, items) {
       position: {lat: item.latitude, lng: item.longitude},
       map: map
     });
+    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'>`
     marker.setMap(map);
-    // marker.setMap(map);
     var infowindow = new google.maps.InfoWindow();
-    var content = '';
-    google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){
+    infowindow.setContent(contentString);
+    google.maps.event.addListener(marker, 'click', (function(marker, infowindow){
       return function() {
-        var contentString = "<p>This is a test</p><p>To see if the description works</p><img src='https://www.mathconsult.ch/static/unipoly/33.256.gif'>"
         closeInfos();
-        infowindow.setContent(contentString);
         infowindow.open(map, marker);
         infos[0] = infowindow;
       };
-    }(marker, content, infowindow)));
+    }(marker, infowindow)));
   }
 }
 
@@ -148,9 +146,7 @@ $( function () {
     }
   });
   initMap();
-  setMarkers(map, items)
 
-  utils.request("GET", "/")
 
   // $("#register-form").on("submit", function(event) {
   //   const $form = $(this);
