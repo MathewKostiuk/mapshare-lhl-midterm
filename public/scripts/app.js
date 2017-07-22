@@ -126,9 +126,6 @@ function initMap(items) {
     textBox[0] = infowindow;
     var $newItem = $('#new-item');
     $newItem.on("submit", handleNewItem);
-    return new Promise(function(resolve, reject) {
-      resolve(map);
-    });
   });
 }
 
