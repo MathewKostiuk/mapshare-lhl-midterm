@@ -2,7 +2,7 @@ const $form = $("#register-form");
 $form.on("submit", function(event) {
   event.preventDefault();
 });
-
+var map;
 
 var infos = [];
 var formStr = "<form action='/items/new/' method='POST' id='newItem'><input name type='text' id='markerName' placeholder='Name:'/><br><input name=text type='text' id='markerDescription' placeholder='Description:'/><br><input name='img_url' type='text' id='markerImage' placeholder='Image URL:'/><br><input type='submit' value='submit'/></form>"
@@ -145,9 +145,12 @@ $( function () {
     url: "/lists"
   }).done(function (lists) {
     for(list of lists) {
+      var click = list.id;
       $("<a>").text(list.name).attr('id', list.id).append("<br>").appendTo($("#left-col"));
     }
   });
   initMap();
   setMarkers(map, items)
 });
+
+
