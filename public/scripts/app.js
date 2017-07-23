@@ -36,9 +36,9 @@ function setMarkers(map, items) {
     return;
   }
 
-  var infowindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < items.length; i++) {
+    var infowindow = new google.maps.InfoWindow();
     var item = items[i];
     var content = item.name;
     var marker = new google.maps.Marker({
