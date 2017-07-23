@@ -65,14 +65,20 @@ function setMarkers(map, items) {
 
 function handleNewItem(event) {
   event.preventDefault();
-
+  var serialArray = $(this).serializeArray();
+  var list_id = serialArray[0].value;
   var $form = $(this).serialize();
+  var link = "/lists/";
+  var listUrl = link + list_id;
   utils.request("POST", "/items/new", $form)
     .then(function(response) {
       if (response.message) {
         $.flash(response.message);
       }
-    }).then(closeTextBox());
+    }).then(closeTextBox())
+    .then( utils.request("GET", listUrl).then(function (items) {
+      initMap(items);
+    }));
 }
 
 function initMap(items) {
@@ -85,7 +91,7 @@ function initMap(items) {
   setMarkers(map, items);
 
   google.maps.event.addListener(map, "rightclick", function (event) {
-    if (markerCount.length === 0) {return};
+    if (markerCount.length === 0) { return; }
     closeTextBox();
     var infowindow = new google.maps.InfoWindow();
     var latitude = event.latLng.lat();
