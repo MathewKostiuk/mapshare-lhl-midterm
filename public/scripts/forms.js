@@ -20,6 +20,7 @@ $(function() {
         }
       }).then(function() {
         $("#register-form")[0].reset();
+        $("#register-form").toggleClass("hidden");
       });
   });
 
@@ -44,10 +45,12 @@ $(function() {
   })
 
   $("#login-button").on("click", function() {
+    $("#register-form").addClass("hidden");
     $("#login-form").toggleClass("hidden");
   })
 
   $("#register-button").on("click", function() {
+    $("#login-form").addClass("hidden");
     $("#register-form").toggleClass("hidden")
   })
 
