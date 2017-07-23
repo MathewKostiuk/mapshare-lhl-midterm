@@ -20,7 +20,8 @@ module.exports = (db) => {
       description: req.body.description,
       image_url: req.body.img,
       latitude: req.body.lat,
-      longitude: req.body.long
+      longitude: req.body.long,
+      list_id: req.body.list_id
     };
     db.addToTable('items', newItem);
   });
