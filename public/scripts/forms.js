@@ -1,5 +1,15 @@
 $(function() {
 
+  // if (userId) {
+  //   $("#login-button").addClass("hidden");
+  //   $("#register-button").addClass("hidden");
+  //   $("#logout-button").removeClass("hidden");
+  // } else {
+  //   $("#login-button").removeClass("hidden");
+  //   $("#register-button").removeClass("hidden");
+  //   $("#logout-button").addClass("hidden");
+  // }
+
   $("#register-form").on("submit", function(event) {
     event.preventDefault();
     var $form = $(this).serialize();
@@ -21,6 +31,7 @@ $(function() {
         $.flash(response.message);
       }).then(function() {
         $("#login-form")[0].reset();
+        $("#login-form").toggleClass("hidden");
       });
   })
 
@@ -30,6 +41,14 @@ $(function() {
       .then(function(response) {
         $.flash(response.message);
       });
+  })
+
+  $("#login-button").on("click", function() {
+    $("#login-form").toggleClass("hidden");
+  })
+
+  $("#register-button").on("click", function() {
+    $("#register-form").toggleClass("hidden")
   })
 
 });

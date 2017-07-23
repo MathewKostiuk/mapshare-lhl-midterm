@@ -34,24 +34,27 @@
         <span class="title">
           <img class="logo-text" src="/images/mapshare-text.png" >
         </span>
-        <!-- <div class="forms">
-            REGISTRATION FORM
-          <form id="register-form" class="form" action="api/users/register" method="POST">
-            <input class="username" type="name" name="username" placeholder="Enter Username">
-            <input class="email" type="email" name="email" placeholder="Enter email (Optional)">
-            <input class="password" type="password" name="password" placeholder="Enter password">
-            <input type="submit" value="Register">
-          </form>
-            LOGIN FORM
-          <form id="login-form" class="form" action="api/users/login" method="POST">
-            <input class="username" type="name" name="username" placeholder="Enter username">
-            <input class="password" type="password" name="password" placeholder="Enter password">
-            <input type="submit" value="Login">
-          </form>
-            LOGOUT FORM
-          <button id="logout-button">Logout</button>
-        </div> -->
+        <span class="nav-buttons">
+          <button id="login-button" class="nav-butt">Login</button>
+          <button id="register-button" class="nav-butt">Register</button>
+          <button id="logout-button" class="nav-butt">Logout</button>
+        </span>
       </nav>
+      <div class="forms">
+            <!-- REGISTRATION FORM -->
+          <form id="register-form" class="form hidden" action="api/users/register" method="POST">
+            <input class="username" type="name" name="username" placeholder="Username">
+            <input class="email" type="email" name="email" placeholder="Email (Optional)">
+            <input class="password" type="password" name="password" placeholder="Password">
+            <input class="submit" type="submit" value="Register">
+          </form>
+            <!-- LOGIN FORM -->
+          <form id="login-form" class="form hidden" action="api/users/login" method="POST">
+            <input class="username" type="name" name="username" placeholder="Username">
+            <input class="password" type="password" name="password" placeholder="Password">
+            <input class="submit" type="submit" value="Login">
+          </form>
+        </div>
     </header>
     <main>
         <div class="container-fluid" id="map-box">
