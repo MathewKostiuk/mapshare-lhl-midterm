@@ -65,6 +65,7 @@ function setMarkers(map, items) {
 function handleNewItem(event) {
   event.preventDefault();
   var form = $(this).serializeArray();
+  console.log(form);
   $.ajax({
     type: 'POST',
     url: '/items/new',
