@@ -5,6 +5,7 @@ require('dotenv').config();
 const MAP         = process.env.API_KEY;
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
+const MAP_API     = process.env.MAP_API;
 
 const express     = require("express");
 const bodyParser  = require("body-parser");
@@ -17,7 +18,6 @@ const knexLogger  = require('knex-logger');
 const cookieSession = require("cookie-session");
 
 // Seperated Routes for each Resource
-const homeRoute = require("./routes/home");
 const usersRoutes = require("./routes/users");
 const itemsRoutes = require("./routes/items");
 const listsRoutes = require("./routes/lists");
@@ -50,7 +50,13 @@ app.use("/items", itemsRoutes(db));
 app.use("/lists", listsRoutes(db));
 
 // Home page
-app.use("/", homeRoute(db));
+app.get("/", (req, res) => {
+  let templateVars = {
+    MAP_API: MAP_API,
+    id: req.session.userId
+  }
+  res.render("index", templateVars);
+});
 
 
 app.listen(PORT, () => {

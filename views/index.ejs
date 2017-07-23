@@ -38,7 +38,10 @@
         <% if (!id) { %>
           <button id="login-button" class="nav-butt">Login</button>
           <button id="register-button" class="nav-butt">Register</button>
+          <button id="logout-button" class="nav-butt hidden">Logout</button>
         <% } else { %>
+          <button id="login-button" class="nav-butt hidden">Login</button>
+          <button id="register-button" class="nav-butt hidden">Register</button>
           <button id="logout-button" class="nav-butt">Logout</button>
         <% } %>
         </span>

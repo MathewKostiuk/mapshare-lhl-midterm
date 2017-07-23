@@ -1,3 +1,9 @@
+var toggleButtons = function() {
+  $("#login-button").toggleClass("hidden");
+  $("#register-button").toggleClass("hidden");
+  $("#logout-button").toggleClass("hidden");
+}
+
 $(function() {
 
   $("#register-form").on("submit", function(event) {
@@ -11,7 +17,7 @@ $(function() {
       }).then(function() {
         $("#register-form")[0].reset();
         $("#register-form").toggleClass("hidden");
-      });
+      }).then(toggleButtons);
   });
 
   $("#login-form").on("submit", function(event) {
@@ -23,7 +29,7 @@ $(function() {
       }).then(function() {
         $("#login-form")[0].reset();
         $("#login-form").toggleClass("hidden");
-      });
+      }).then(toggleButtons);
   })
 
   $("#logout-button").on("click", function(event) {
@@ -31,7 +37,7 @@ $(function() {
     utils.request("POST", "/api/users/logout")
       .then(function(response) {
         $.flash(response.message);
-      });
+      }).then(toggleButtons);
   })
 
   $("#login-button").on("click", function() {
