@@ -55,31 +55,31 @@ function setMarkers(map, items) {
     var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'><p class='modify-item'>${item.id}</p><button class='editMe' type='button'>Edit</button><button class='deleteMe' type='button'>Delete</button><p>${item.latitude}</p><p>${item.longitude}</p>`;
     marker.setMap(map);
     infowindow.setContent(contentString);
-    var $selector = '#editItem';
-    var $lat = $('#itemLat').text();
-    var $lng = $('#itemLng').text();
-    var $markerId = $('.findItem').text();
-    console.log($markerId, $lat, $lng);
-    $(document).on('click', $selector, function(event) {
-      closeInfos();
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      // var markerId = $('.findItem').text();
-      // var editUrl = '/items/' + markerId;
-      // var lat = $('.itemLat').text();
-      // var lng = $('.itemLng').text();
-      console.log($selector);
-      // var infowindow = new google.maps.InfoWindow();
-      // var formStr = `<form action='${editUrl}' method='POST' id='edit-item'><input type='text' name='list_id' id='listId' style='display: none;'value='${items[0].list_id}'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
+    google.maps.event.addListener(marker, 'click', (function(marker, infowindow){
+      return function() {
+        closeInfos();
+        infowindow.open(map, marker);
+        infos[0] = infowindow;
+        var content = infowindow.content;
+        var el = $('<div></div>');
+        el.html(content);
+        var $edit = $('.modify-item', el).text();
+        editElement = $edit;
+        var itemUrl = '/items/' + editElement
 
-      // infowindow.setContent(formStr);
+        $('.editMe').click(function() {
+          var editString = `<form action='${itemUrl}' method='POST' id='edit-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
+          infowindow.setContent(editString);
+          $('#edit-item').on('submit', editItem);
 
-      // infowindow.setPosition({lat: lat, lng: lng});
-      // infowindow.open(map);
-      // textBox[0] = infowindow;
+        });
 
-    })
 
+      };
+    }(marker, infowindow)));
+  }
+  map.fitBounds(bounds);
+}
 
 
     google.maps.event.addListener(marker, 'click', (function(marker, infowindow){
