@@ -35,9 +35,12 @@
           <img class="logo-text" src="/images/mapshare-text.png" >
         </span>
         <span class="nav-buttons">
+        <% if (!id) { %>
           <button id="login-button" class="nav-butt">Login</button>
           <button id="register-button" class="nav-butt">Register</button>
+        <% } else { %>
           <button id="logout-button" class="nav-butt">Logout</button>
+        <% } %>
         </span>
       </nav>
       <div class="forms">
