@@ -48,7 +48,8 @@ function setMarkers(map, items) {
     markerCount.push(marker);
     bounds.extend(marker.position);
 
-    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'><p id='hideId'>${item.id}</p>`;
+
+    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'><p>${item.id}</p>`;
     marker.setMap(map);
     infowindow.setContent(contentString);
     google.maps.event.addListener(marker, 'click', (function(marker, infowindow){
@@ -64,14 +65,14 @@ function setMarkers(map, items) {
 
 function handleNewItem(event) {
   event.preventDefault();
-  var form = $(this).serializeArray();
-  console.log(form);
-  $.ajax({
-    type: 'POST',
-    url: '/items/new',
-    data: form
-  })
-    .done(closeTextBox());
+
+  var $form = $(this).serialize();
+  utils.request("POST", "/items/new", $form)
+    .then(function(response) {
+      if (response.message) {
+        $.flash(response.message);
+      }
+    }).then(closeTextBox());
 }
 
 function initMap(items) {
@@ -95,8 +96,7 @@ function initMap(items) {
     infowindow.setPosition(event.latLng);
     infowindow.open(map);
     textBox[0] = infowindow;
-    var $newItem = $('#new-item');
-    $newItem.on("submit", handleNewItem);
+    $("#new-item").on("submit", handleNewItem);
   });
 }
 

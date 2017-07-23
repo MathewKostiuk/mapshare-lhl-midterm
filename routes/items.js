@@ -12,16 +12,6 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/:id", (req, res) => {
-    const newItem = {
-      name: req.body.name,
-      description: req.body.description,
-      image_url: req.body.img
-    };
-    const check = ["id", req.body.id];
-    db.updateTable("items", check, newItem);
-  });
-
   router.post("/new", (req, res) => {
     console.log(req.body);
     const newItem = {
@@ -33,6 +23,16 @@ module.exports = (db) => {
       longitude: req.body.long
     };
     db.addToTable('items', newItem);
+  });
+
+  router.post("/:id", (req, res) => {
+    const newItem = {
+      name: req.body.name,
+      description: req.body.description,
+      image_url: req.body.img
+    };
+    const check = ["id", req.body.id];
+    db.updateTable("items", check, newItem);
   });
 
   return router;

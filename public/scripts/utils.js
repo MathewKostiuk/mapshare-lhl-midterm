@@ -11,7 +11,7 @@ window.utils = {
           resolve(response);
         },
         error: function(XHR, status, error) {
-          console.error(error);
+          console.log(error);
           $.flash(error);
         }
       });
