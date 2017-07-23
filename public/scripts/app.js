@@ -64,13 +64,13 @@ function setMarkers(map, items) {
 
 function handleNewItem(event) {
   event.preventDefault();
-  var form = $(this).serializeArray();
-  $.ajax({
-    type: 'POST',
-    url: '/items/new',
-    data: form
-  })
-    .done(closeTextBox());
+  var $form = $(this).serialize();
+  utils.request("POST", "/items/new", $form)
+    .then(function(response) {
+      if (response.message) {
+        $.flash(response.message);
+      }
+    }).then(closeTextBox());
 }
 
 function initMap(items) {
@@ -94,8 +94,7 @@ function initMap(items) {
     infowindow.setPosition(event.latLng);
     infowindow.open(map);
     textBox[0] = infowindow;
-    var $newItem = $('#new-item');
-    $newItem.on("submit", handleNewItem);
+    $("#new-item").on("submit", handleNewItem);
   });
 }
 
