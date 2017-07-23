@@ -48,7 +48,7 @@ function setMarkers(map, items) {
     markerCount.push(marker);
     bounds.extend(marker.position);
 
-    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'>`;
+    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'><p>${item.id}</p>`;
     marker.setMap(map);
     infowindow.setContent(contentString);
     google.maps.event.addListener(marker, 'click', (function(marker, infowindow){
