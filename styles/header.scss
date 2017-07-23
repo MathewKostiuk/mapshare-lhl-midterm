@@ -1,43 +1,70 @@
-  nav.nav-bar {
-    background-color: rgba(255, 255, 255, 0.75);
-    border: 1px solid #eee;
-    border-radius: 5px;
-    display: flex;
-    margin: 10px 0 20px 0;
-    height: 13vh;
-    padding-left: 10px;
-    top: 0px;
-    left: 0px;
-  }
+header {
+  height: 15%;
+}
 
-  h1 {
-    color: #244751;
-  }
+nav.nav-bar {
+  background-color: rgba(255, 255, 255, 0.75);
+  border: 1px solid #eee;
+  border-radius: 5px;
+  height: 85%;
+  margin: 10px 0 20px 0;
+  padding: 0 10px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
 
-  .email {
-    width: 175px;
-  }
+.logo-text {
+  height: 100%;
+}
 
-  .form {
-    float: right;
-    margin: 5px;
-  }
+.nav-buttons {
+  right: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  .forms {
-    flex: 1;
-  }
+.nav-butt {
+  background-color: #eee;
+  border: 1px solid #000;
+  border-radius: 5px;
+  color: black;
+  height: 100%;
+  font-size: 125%;
+  font-weight: 300;
+  opacity: 0.9;
+  width: 120px;
+}
 
-  .password {
-    width: 125px;
-  }
+.hidden {
+  display: none;
+}
 
-  .title {
-    flex: 0 0 40%;
-  }
+.forms {
+  position: absolute;
+  right: 100px;
+  width: 200px;
+  z-index: 1000;
+}
 
-  .username {
-    width: 125px;
-  }
+.form {
+  background-color: rgba(255,255,255,0.75);
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+}
 
+.form input {
+  border: 1px solid #757c7c;
+  margin: 2px 0;
+}
 
+.form .submit {
+  background-color: #eee;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-left: 75px;
+  width: 75px;
+}
 

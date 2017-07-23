@@ -5,8 +5,8 @@ require('dotenv').config();
 const MAP         = process.env.API_KEY;
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
-
 const MAP_API     = process.env.MAP_API;
+
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
@@ -52,7 +52,8 @@ app.use("/lists", listsRoutes(db));
 // Home page
 app.get("/", (req, res) => {
   let templateVars = {
-    MAP_API: MAP_API
+    MAP_API: MAP_API,
+    id: req.session.userId
   }
   res.render("index", templateVars);
 });
