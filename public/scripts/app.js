@@ -113,7 +113,7 @@ $( function () {
   var listsUrl = "/lists/";
   utils.request("GET", "/lists").then(function (lists) {
     for(list of lists) {
-      $("<a>").text(list.name).attr('class', 'list-item').attr('id', list.id).append("<br>").appendTo($("#left-col"));
+      $("<a>").text(list.name).attr('class', 'list-item').attr('id', list.id).append("<br>").appendTo($("#list-container"));
       $('#left-col').on('click', '.list-item', function (event) {
         event.preventDefault();
         event.stopImmediatePropagation();
