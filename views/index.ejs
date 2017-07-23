@@ -31,30 +31,29 @@
   <body>
     <header>
       <nav class="nav-bar">
-        <div class="title">
-          <h1 id="title">MapShare</h1>
-        </div>
-        <div class="forms">
-            <!-- REGISTRATION FORM -->
+        <span class="title">
+          <img class="logo-text" src="/images/mapshare-text.png" >
+        </span>
+        <!-- <div class="forms">
+            REGISTRATION FORM
           <form id="register-form" class="form" action="api/users/register" method="POST">
             <input class="username" type="name" name="username" placeholder="Enter Username">
             <input class="email" type="email" name="email" placeholder="Enter email (Optional)">
             <input class="password" type="password" name="password" placeholder="Enter password">
             <input type="submit" value="Register">
           </form>
-            <!-- LOGIN FORM -->
+            LOGIN FORM
           <form id="login-form" class="form" action="api/users/login" method="POST">
             <input class="username" type="name" name="username" placeholder="Enter username">
             <input class="password" type="password" name="password" placeholder="Enter password">
             <input type="submit" value="Login">
           </form>
-            <!-- LOGOUT FORM -->
-          <form id="logout-form" class="form" action="api/users/logout" method="POST">
-            <input type="submit" value="Logout">
-          </form>
-        </div>
+            LOGOUT FORM
+          <button id="logout-button">Logout</button>
+        </div> -->
       </nav>
     </header>
+    <main>
         <div class="container-fluid" id="map-box">
           <div class="row align-items-center no-gutters">
             <div class="bar-left col-xs-2" id="left-col"></div>
@@ -68,12 +67,12 @@
             <div class="bar-right side-bar col-md-2 col-md-offset-1" id="right-col">
             </div>
           </div> -->
-
-      <footer class="footer-block">
-        <div>
-          <p class="footer-text">MapShare copyright 2017</p>
-        </div>
-      </footer>
+    </main>
+    <footer class="footer-block">
+      <div>
+        <p class="footer-text">MapShare copyright 2017</p>
+      </div>
+    </footer>
 
   </body>
 </html>

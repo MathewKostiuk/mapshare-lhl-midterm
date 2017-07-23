@@ -18,20 +18,23 @@ body {
   flex-wrap: wrap;
 }
 
+header {
+  height: 15%;
+}
+
 nav.nav-bar {
   background-color: rgba(255, 255, 255, 0.75);
   border: 1px solid #eee;
   border-radius: 5px;
-  display: flex;
+  height: 85%;
   margin: 10px 0 20px 0;
-  height: 13vh;
   padding-left: 10px;
   top: 0px;
   left: 0px;
 }
 
-h1 {
-  color: #244751;
+.logo-text {
+  height: 100%;
 }
 
 .email {

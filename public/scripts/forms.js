@@ -24,4 +24,12 @@ $(function() {
       });
   })
 
+  $("#logout-button").on("click", function(event) {
+    event.preventDefault();
+    utils.request("POST", "/api/users/logout")
+      .then(function(response) {
+        $.flash(response.message);
+      });
+  })
+
 });

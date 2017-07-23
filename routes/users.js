@@ -22,6 +22,10 @@ module.exports = (db) => {
   });
 
   router.post("/login", (req, res) => {
+    if (req.session.userId) {
+      res.json({message: "you're already logged in"})
+      return;
+    }
     const user = req.body.username;
     const password = req.body.password;
     db.findInTable("users", "name", user)
@@ -42,8 +46,14 @@ module.exports = (db) => {
   });
 
   router.post("/logout", (req, res) => {
-    console.log(req.session.userId);
-    req.session.userId = null;
+    if (req.session.userId) {
+      req.session = null;
+      res.json({message: "logged out"});
+      return;
+    } else {
+      res.json({message: "you're not logged in"})
+      return;
+    }
   });
 
   router.post("/register", (req, res) => {
