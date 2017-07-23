@@ -47,11 +47,37 @@ function setMarkers(map, items) {
     });
     markerCount.push(marker);
     bounds.extend(marker.position);
-
-
-    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'><p>${item.id}</p>`;
+    console.log(this);
+    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'><p class='findItem' style="display: none;">${item.id}</p><button id='editItem' type='button' form='editMarker'>Edit</button><button id='deleteItem' type='button'>Delete</button><p id='itemLat' >${item.latitude}</p><p id='itemLng' style="display: none;">${item.longitude}</p>`;
     marker.setMap(map);
     infowindow.setContent(contentString);
+    var $selector = '#editItem';
+    var $lat = $('#itemLat').text();
+    var $lng = $('#itemLng').text();
+    var $markerId = $('.findItem').text();
+    console.log($markerId, $lat, $lng);
+    $(document).on('click', $selector, function(event) {
+      closeInfos();
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      // var markerId = $('.findItem').text();
+      // var editUrl = '/items/' + markerId;
+      // var lat = $('.itemLat').text();
+      // var lng = $('.itemLng').text();
+      console.log($selector);
+      // var infowindow = new google.maps.InfoWindow();
+      // var formStr = `<form action='${editUrl}' method='POST' id='edit-item'><input type='text' name='list_id' id='listId' style='display: none;'value='${items[0].list_id}'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
+
+      // infowindow.setContent(formStr);
+
+      // infowindow.setPosition({lat: lat, lng: lng});
+      // infowindow.open(map);
+      // textBox[0] = infowindow;
+
+    })
+
+
+
     google.maps.event.addListener(marker, 'click', (function(marker, infowindow){
       return function() {
         closeInfos();
@@ -82,7 +108,6 @@ function handleNewItem(event) {
 }
 
 function initMap(items) {
-  console.log(items);
   var victoriaBc = {lat: 48.428, lng: -123.365};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
