@@ -49,7 +49,11 @@ module.exports = (db) => {
       name: req.body.name,
       creator_id: req.session.userId
     };
-    db.addToTable("lists", newList);
+    db.addToTable("lists", newList)
+      .then((response) => {
+        res.json({message: "created"});
+        return;
+      });
   });
 
   return router;

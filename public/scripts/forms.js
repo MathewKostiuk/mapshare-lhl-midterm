@@ -80,9 +80,6 @@ $(function() {
     utils.request("POST", "/lists/new", $form)
       .then(function(response) {
         $.flash(response.message);
-        if (response.id) {
-          toggleButtons();
-        }
       }).then(function() {
         $("#new-list-form")[0].reset();
         $("#new-list-form").toggleClass("hidden");
