@@ -5,7 +5,6 @@ var textBox = [];
 var markerArray = [];
 var editElement = '';
 
-
 function closeInfos() {
   if (infos.length > 0) {
     infos[0].set("marker", null);
@@ -54,6 +53,7 @@ function setMarkers(map, items) {
       return function() {
         closeInfos();
         infowindow.open(map, marker);
+        currentMarker = marker;
         infos[0] = infowindow;
         var content = infowindow.content;
         var el = $('<div></div>');
@@ -64,24 +64,49 @@ function setMarkers(map, items) {
         $('.editMe').click(function() {
           var editString = `<form action='/items/edit' method='POST' id='edit-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
           infowindow.setContent(editString);
+
+            google.maps.event.addListener(infowindow, 'closeclick', function() {
+            event.preventDefault();
+            infowindow.setContent(content);
+          })
+
           $('#edit-item').on('submit', function(event) {
             event.preventDefault();
+            infowindow.close();
             var $protoForm = $(this).serialize();
             var $form = $protoForm + '&id=' + editElement;
             var markers = markerArray[0];
+            var listId = markers[0].list_id;
+            var link = '/lists/' + listId;
             utils.request("POST", "/items/edit", $form)
               .then(function(response) {
                 if (response.message) {
                   $.flash(response.message);
                 }
-              }).then(closeTextBox);
+              }).then(closeInfos())
+              .then(utils.request("GET", link).then(function(items) {
+                initMap(items);
+              }));
           });
         });
+
+        $('.deleteMe').click(function() {
+          infowindow.close();
+          console.log(editElement);
+          var deleteUrl = '/items/' + editElement + '/delete';
+          utils.request("GET", deleteUrl)
+            .then(function(response) {
+              if (response.message) {
+                $.flash(response.message);
+              }
+            }).then(closeInfos());
+        })
       };
     }(marker, infowindow)));
   }
   map.fitBounds(bounds);
 }
+
 
 
 
@@ -148,17 +173,6 @@ $( function () {
     }
   });
   initMap();
-
-
-  // $("#register-form").on("submit", function(event) {
-  //   const $form = $(this);
-  //   event.preventDefault();
-  //   $.ajax({
-  //     method: "POST",
-  //     url: "/api/users/register"
-  //     data
-  //   })
-  // });
 });
 
 
