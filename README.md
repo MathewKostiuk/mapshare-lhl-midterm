@@ -30,7 +30,7 @@
 - Cookie-session 2.0.0-beta.2
 - Dotenv 4.0.0
 - Ejs 2.5.6
-- Express": "^4.15.3",
+- Express": 4.15.3
 - Knex 0.13.0
 - Knex-logger 0.1.0
 - Morgan 1.8.2
