@@ -120,7 +120,7 @@ function initMap(items) {
   setMarkers(map, items);
 
   google.maps.event.addListener(map, "rightclick", function (event) {
-    if (markerCount.length === 0) { return; }
+    // if (markerCount.length === 0) { return; }
     closeTextBox();
     var infowindow = new google.maps.InfoWindow();
     var latitude = event.latLng.lat();
