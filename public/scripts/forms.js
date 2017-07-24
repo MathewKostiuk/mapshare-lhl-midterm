@@ -4,7 +4,7 @@ var toggleButtons = function() {
   $("#logout-button").toggleClass("hidden");
   $("#fav-button").toggleClass("hidden");
   $("#my-button").toggleClass("hidden");
-}
+};
 
 $(function() {
 
@@ -72,7 +72,7 @@ $(function() {
         $("#login-form")[0].reset();
         $("#login-form").toggleClass("hidden");
       });
-  })
+  });
 
   $("#new-list-form").on("submit", function(event) {
     event.preventDefault();
@@ -84,7 +84,5 @@ $(function() {
         $("#new-list-form")[0].reset();
         $("#new-list-form").toggleClass("hidden");
       });
-  })
-
 
 });
