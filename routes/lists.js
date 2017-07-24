@@ -7,13 +7,28 @@ module.exports = (db) => {
 
   router.get("/", (req, res) => {
     db.viewTable("lists")
-      .then((results) => {
-        res.json(results);
+      .then((response) => {
+        res.json(response);
       });
   });
 
   // get favourite lists
-
+  router.get("/favourites", (req, res) => {
+    db.findInTable("user_favourites", "user_id", req.params.userId)
+      .then((response) => {
+        const lists = [];
+        return new Promise((resolve, reject) => {
+          for (row in response) {
+            db.findInTable("lists", "id", row.list_id)
+              .then((response) => {
+                lists.push(response);
+              });
+          }
+        }).then(() => {
+          res.json(lists);
+        });
+      });
+  });
 
   // get your lists
 
@@ -23,8 +38,8 @@ module.exports = (db) => {
 
   router.get("/:id", (req, res) => {
     db.findInTable("items", "list_id", req.params.id)
-      .then((results) => {
-        res.json(results);
+      .then((response) => {
+        res.json(response);
       });
   });
 
