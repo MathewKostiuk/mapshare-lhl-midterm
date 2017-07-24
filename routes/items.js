@@ -5,6 +5,11 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
+  router.get("/:id/delete", (req, res) => {
+    const id = ["id", req.params.id];
+    db.deleteFromTable("items", id);
+  })
+
   router.get("/:id", (req, res) => {
     db.findInTable("items", "id", req.params.id)
       .then((results) => {
@@ -22,7 +27,7 @@ module.exports = (db) => {
       longitude: req.body.long,
       list_id: req.body.list_id
     };
-    db.addToTable('items', newItem);
+    db.addToTable("items", newItem);
   });
 
   router.post("/edit", (req, res) => {
