@@ -1,29 +1,39 @@
 .bar-left {
-  background-color: rgba(255, 255, 255, 0.75);
-  border-radius: 5px;
-  border: 1px solid #eee;
   height: 75vh;
 
-  #side-button-container {
-  left: 0;
-  width: 100%;
-
-    .side-button {
-      background-color: #eee;
-      border: 1px solid black;
-      border-radius: 5px;
-      font-size: 125%;
-      font-weight: 300;
-      line-height: 110%;
-      width: 50px;
-      height: 50px;
-    }
-
-  }
-
   #list-container {
-    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 5px;
+    border: 1px solid #eee;
+    height: 50%;
+    padding: 5px;
     width: 100%;
+
+    #side-button-container {
+      left: 0;
+      width: 100%;
+
+      .side-button {
+        background-color: #eee;
+        border: 1px solid black;
+        border-radius: 5px;
+        font-size: 125%;
+        font-weight: 300;
+        line-height: 110%;
+        width: 50px;
+        height: 50px;
+      }
+    }
   }
 
+  #filler {
+    height: 5%;
+  }
+
+  #item-container {
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 5px;
+    border: 1px solid #eee;
+    height: 45%;
+  }
 }
