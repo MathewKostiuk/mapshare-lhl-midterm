@@ -9,7 +9,7 @@
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
   - [Click here to get API key for Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key)
-  - Assign the API key to a variable called 'MAP-API' within .env eg. MAP-API=(Your API key here)
+  - Assign the API key to a variable called `MAP-API` within .env eg. `MAP-API=(Your API key here)`
 2. Update the .env file with your correct local information - you will need to create a database on your local machine
 3. Install dependencies: `npm i`
 4. Fix to binaries for sass: `npm rebuild node-sass`
