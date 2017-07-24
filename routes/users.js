@@ -32,14 +32,14 @@ module.exports = (db) => {
       .then((results) => {
         console.log('found');
         if (!user) {
-          res.json({message: "username and password cannot be empty"})
+          res.json({message: "username and password cannot be empty", id: req.session.userId})
           return;
         } else if (bcrypt.compareSync(password, results[0].password)) {
           req.session.userId = results[0].id;
-          res.json({message: "logged in"});
+          res.json({message: "logged in", id: req.session.userId});
           return;
         } else {
-          res.json({message: "username or password incorrect"});
+          res.json({message: "username or password incorrect", id: req.session.userId});
           return;
         }
       })
@@ -66,17 +66,17 @@ module.exports = (db) => {
     db.findInTable("users", "name", req.body.username)
       .then((results) => {
         if (results.length) {
-          res.json({message: "user with that name already exists"});
+          res.json({message: "user with that name already exists", id: req.session.userId});
           return;
         } else if (newUser.name && newUser.password){
           db.addToTable("users", newUser)
             .then(() => {
               req.session.userId = newUser.id;
-              res.send();
+              res.json({message: "thanks for registering", id: req.session.userId});
               return;
             });
         } else {
-          res.json({message: "username and email cannot be empty"});
+          res.json({message: "username and email cannot be empty", id: req.session.userId});
           return;
         }
       })

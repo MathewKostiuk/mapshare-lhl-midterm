@@ -47,7 +47,7 @@ const deleteFromTable = (table, obj1, obj2) => {
     return knex(table)
       .del()
       .where(obj1)
-      .andWhere(obj2)
+      .andWhere(obj2);
   }
 }
 

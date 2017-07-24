@@ -17,7 +17,11 @@ $(function() {
       }).then(function() {
         $("#register-form")[0].reset();
         $("#register-form").toggleClass("hidden");
-      }).then(toggleButtons);
+      }).then(function(response) {
+        if (response.id) {
+          toggleButtons();
+        }
+      });
   });
 
   $("#login-form").on("submit", function(event) {
@@ -29,7 +33,11 @@ $(function() {
       }).then(function() {
         $("#login-form")[0].reset();
         $("#login-form").toggleClass("hidden");
-      }).then(toggleButtons);
+      }).then(function(response) {
+        if (response.id) {
+          toggleButtons();
+        }
+      });
   })
 
   $("#logout-button").on("click", function(event) {
