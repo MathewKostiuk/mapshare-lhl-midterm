@@ -25,4 +25,20 @@
 
 - Node 5.10.x or above
 - NPM 3.8.x or above
+- Bcrypt 1.0.2
+- Body-parser 1.17.2
+- Cookie-session 2.0.0-beta.2
+- Dotenv 4.0.0
+- Ejs 2.5.6
+- Express": "^4.15.3",
+- Knex 0.13.0
+- Knex-logger 0.1.0
+- Morgan 1.8.2
+- Node-sass-middleware 0.11.0
+- Pg 7.0.1
+
+
+
+
+
 
