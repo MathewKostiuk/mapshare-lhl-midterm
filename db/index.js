@@ -51,9 +51,10 @@ const deleteFromTable = (table, arr1, arr2) => {
 }
 
 const updateTable = (table, checkArr, newObj) => {
+  console.log('got here');
   return knex(table)
-    .where(checkArr[0], checkArr[1])
-    .update(newObj);
+    .update(newObj)
+    .where(checkArr[0], checkArr[1]);
 }
 
 ////////////////////////////////////////////////////////////////

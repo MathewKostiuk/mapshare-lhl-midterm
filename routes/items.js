@@ -25,16 +25,17 @@ module.exports = (db) => {
     db.addToTable('items', newItem);
   });
 
-  router.post("/:id", (req, res) => {
+  router.post("/edit", (req, res) => {
     console.log(req.body);
     const newItem = {
       name: req.body.name,
       description: req.body.description,
-      image_url: req.body.img
+      image_url: req.body.img,
     };
     const check = ["id", req.body.id];
     db.updateTable("items", check, newItem);
   });
+
 
   return router;
 };

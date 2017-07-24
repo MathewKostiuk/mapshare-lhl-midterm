@@ -65,56 +65,30 @@ function setMarkers(map, items) {
         el.html(content);
         var $edit = $('.modify-item', el).text();
         editElement = $edit;
-        var itemUrl = '/items/' + editElement
+
         $('.editMe').click(function() {
-          var editString = `<form action='${itemUrl}' method='POST' id='edit-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
+          var editString = `<form action='/items/edit' method='POST' id='edit-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
           infowindow.setContent(editString);
-          google.maps.event.addListener(infowindow, 'closeclick', function() {
+
+          $('#edit-item').on('submit', function(event) {
             event.preventDefault();
-            infowindow.setContent(content);
-          })
-          $('#edit-item').on('submit', editItem);
+            var $protoForm = $(this).serialize();
+            var $form = $protoForm + '&id=' + editElement;
+            var markers = markerArray[0];
+            utils.request("POST", "/items/edit", $form)
+              .then(function(response) {
+                if (response.message) {
+                  $.flash(response.message);
+                }
+              }).then(closeTextBox());
+          });
         });
-        $('.deleteMe').click(function() {
-          console.log('hey!');
-          console.log($edit);
-          closeInfos();
-        })
-
-
       };
     }(marker, infowindow)));
   }
   map.fitBounds(bounds);
 }
 
-
-function editItem(event) {
-  event.preventDefault();
-  var $protoForm = $(this).serialize();
-  var $form = $protoForm + '&id=' + editElement;
-  var itemUrl = '/items/edit'
-
-  var markers = markerArray[0];
-  var result = '';
-  for (var i = 0; i < markers.length; i++) {
-    if (editElement == markers[i].id) {
-      var result = markers[i];
-    }
-  }
-  var listId = result.list_id;
-  var listUrl = '/lists/' + listId;
-  utils.request('POST', itemUrl, $form)
-    .then(function(response) {
-      if (response.message) {
-        $.flash(response.message);
-      }
-    }).then(closeInfos());
-}
-
-function deleteItem() {
-
-}
 
 
 
