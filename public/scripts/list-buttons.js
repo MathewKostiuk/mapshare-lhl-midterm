@@ -19,12 +19,14 @@ $(function() {
 
   $("#all-button").on("click", function(event) {
     utils.request("GET", "/lists").then(buildList);
-  })
+  });
 
-  // $("#fav-button").on("click", function(event) {
-  //   utils.request("GET", "/lists/")
-  // })
+  $("#fav-button").on("click", function(event) {
+    utils.request("GET", "/lists/favourites").then(buildList);
+  });
 
-  // my-button
+  $("#my-button").on("click", function(event) {
+    utils.request("GET", "/lists/user").then(buildList);
+  });
 
 });
