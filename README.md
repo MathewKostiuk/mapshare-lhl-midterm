@@ -1,4 +1,7 @@
-![MapShare](./public/images/screenshot-1)
+
+![MapShare](public/images/screenshot-2.png?raw=true)
+
+![MapShare](public/images/screenshot-3.png?raw=true)
 
 
 
