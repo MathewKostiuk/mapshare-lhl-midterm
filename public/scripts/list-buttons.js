@@ -13,7 +13,7 @@ var buildList = function (lists) {
       });
     });
   }
-}
+};
 
 $(function() {
 

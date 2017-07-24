@@ -4,7 +4,7 @@ var toggleButtons = function() {
   $("#logout-button").toggleClass("hidden");
   $("#fav-button").toggleClass("hidden");
   $("#my-button").toggleClass("hidden");
-}
+};
 
 $(function() {
 
@@ -38,7 +38,7 @@ $(function() {
         $("#login-form")[0].reset();
         $("#login-form").toggleClass("hidden");
       });
-  })
+  });
 
   $("#logout-button").on("click", function(event) {
     event.preventDefault();
@@ -46,16 +46,16 @@ $(function() {
       .then(function(response) {
         $.flash(response.message);
       }).then(toggleButtons);
-  })
+  });
 
   $("#login-button").on("click", function() {
     $("#register-form").addClass("hidden");
     $("#login-form").toggleClass("hidden");
-  })
+  });
 
   $("#register-button").on("click", function() {
     $("#login-form").addClass("hidden");
-    $("#register-form").toggleClass("hidden")
-  })
+    $("#register-form").toggleClass("hidden");
+  });
 
 });

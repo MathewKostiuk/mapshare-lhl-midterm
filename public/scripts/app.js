@@ -69,10 +69,10 @@ function setMarkers(map, items) {
           var editString = `<form action='/items/edit' method='POST' id='edit-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
           infowindow.setContent(editString);
 
-            google.maps.event.addListener(infowindow, 'closeclick', function() {
+          google.maps.event.addListener(infowindow, 'closeclick', function() {
             event.preventDefault();
             infowindow.setContent(content);
-          })
+          });
 
           $('#edit-item').on('submit', function(event) {
             event.preventDefault();
@@ -104,32 +104,11 @@ function setMarkers(map, items) {
                 $.flash(response.message);
               }
             }).then(closeInfos());
-        })
+        });
       };
     }(marker, infowindow)));
   }
   map.fitBounds(bounds);
-}
-
-
-
-
-function handleNewItem(event) {
-  event.preventDefault();
-  var serialArray = $(this).serializeArray();
-  var list_id = serialArray[0].value;
-  var $form = $(this).serialize();
-  var link = "/lists/";
-  var listUrl = link + list_id;
-  utils.request("POST", "/items/new", $form)
-    .then(function(response) {
-      if (response.message) {
-        $.flash(response.message);
-      }
-    }).then(closeTextBox())
-    .then( utils.request("GET", listUrl).then(function (items) {
-      initMap(items);
-    }));
 }
 
 function initMap(items) {
@@ -156,6 +135,23 @@ function initMap(items) {
   });
 }
 
+function handleNewItem(event) {
+  event.preventDefault();
+  var serialArray = $(this).serializeArray();
+  var list_id = serialArray[0].value;
+  var $form = $(this).serialize();
+  var link = "/lists/";
+  var listUrl = link + list_id;
+  utils.request("POST", "/items/new", $form)
+    .then(function(response) {
+      if (response.message) {
+        $.flash(response.message);
+      }
+    }).then(closeTextBox())
+    .then( utils.request("GET", listUrl).then(function (items) {
+      initMap(items);
+    }));
+}
 
 
 // Document Ready
