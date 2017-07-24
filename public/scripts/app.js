@@ -81,19 +81,30 @@ function setMarkers(map, items) {
             var $protoForm = $(this).serialize();
             var $form = $protoForm + '&id=' + editElement;
             var markers = markerArray[0];
+            var listId = markers[0].list_id;
+            var link = '/lists/' + listId;
             utils.request("POST", "/items/edit", $form)
               .then(function(response) {
                 if (response.message) {
                   $.flash(response.message);
                 }
-              }).then(closeInfos());
+              }).then(closeInfos())
+              .then(utils.request("GET", link).then(function(items) {
+                initMap(items);
+              }));
           });
         });
 
         $('.deleteMe').click(function() {
           infowindow.close();
           console.log(editElement);
-          var deleteUrl =
+          var deleteUrl = '/items/' + editElement + '/delete';
+          utils.request("GET", deleteUrl)
+            .then(function(response) {
+              if (response.message) {
+                $.flash(response.message);
+              }
+            }).then(closeInfos());
         })
       };
     }(marker, infowindow)));
@@ -167,17 +178,6 @@ $( function () {
     }
   });
   initMap();
-
-
-  // $("#register-form").on("submit", function(event) {
-  //   const $form = $(this);
-  //   event.preventDefault();
-  //   $.ajax({
-  //     method: "POST",
-  //     url: "/api/users/register"
-  //     data
-  //   })
-  // });
 });
 
 
