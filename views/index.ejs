@@ -69,16 +69,22 @@
             <div class="bar-left col-xs-2" id="left-col">
               <div id="side-button-container">
                 <button id="all-button" class="side-button">All Lists</button>
-                <% if (id) { %>
+                <!-- <% if (id) { %>
                 <button id="fav-button" class="side-button">Fav Lists</button>
                 <button id="my-button" class="side-button">My Lists</button>
                 <% } else { %>
                 <button id="fav-button" class="side-button hidden">Fav Lists</button>
                 <button id="my-button" class="side-button hidden">My Lists</button>
-                <% } %>
+                <% } %> -->
               </div>
               <div id="list-container"></div>
+              <button id="new-list">New Map</button>
             </div>
+            <form id="new-list-form" class="hidden" action="lists/new" method="POST">
+              <h4>New Map</h4>
+              <input type="text-area" name="name" placeholder="list name">
+              <input class="submit" type="submit" name="submit" value="create">
+            </form>
             <div class="col-xs-9 "" id="map"></div>
           </div>
         </div>

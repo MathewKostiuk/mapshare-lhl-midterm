@@ -8,6 +8,40 @@ var toggleButtons = function() {
 
 $(function() {
 
+  //////////////////////////
+  /////                  ///
+  //// button listeners ////
+  ///                  /////
+  //////////////////////////
+
+  $("#login-button").on("click", function() {
+    $("#register-form").addClass("hidden");
+    $("#login-form").toggleClass("hidden");
+  })
+
+  $("#register-button").on("click", function() {
+    $("#login-form").addClass("hidden");
+    $("#register-form").toggleClass("hidden")
+  })
+
+  $("#new-list").on("click", function(event) {
+    $("#new-list-form").toggleClass("hidden");
+  });
+
+  $("#logout-button").on("click", function(event) {
+    event.preventDefault();
+    utils.request("POST", "/api/users/logout")
+      .then(function(response) {
+        $.flash(response.message);
+      }).then(toggleButtons);
+  })
+
+  ///////////////////////////////
+  /////                       ///
+  //// form submit listeners ////
+  ///                       /////
+  ///////////////////////////////
+
   $("#register-form").on("submit", function(event) {
     event.preventDefault();
     var $form = $(this).serialize();
@@ -40,22 +74,20 @@ $(function() {
       });
   })
 
-  $("#logout-button").on("click", function(event) {
+  $("#new-list-form").on("submit", function(event) {
     event.preventDefault();
-    utils.request("POST", "/api/users/logout")
+    var $form = $(this).serialize();
+    utils.request("POST", "/lists/new", $form)
       .then(function(response) {
         $.flash(response.message);
-      }).then(toggleButtons);
+        if (response.id) {
+          toggleButtons();
+        }
+      }).then(function() {
+        $("#new-list-form")[0].reset();
+        $("#new-list-form").toggleClass("hidden");
+      });
   })
 
-  $("#login-button").on("click", function() {
-    $("#register-form").addClass("hidden");
-    $("#login-form").toggleClass("hidden");
-  })
-
-  $("#register-button").on("click", function() {
-    $("#login-form").addClass("hidden");
-    $("#register-form").toggleClass("hidden")
-  })
 
 });

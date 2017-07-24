@@ -3,22 +3,57 @@
   border-radius: 5px;
   border: 1px solid #eee;
   height: 75vh;
-}
 
-#side-button-container {
-  left: 0;
-  width: 100%;
+  #side-button-container {
+    left: 0;
+    width: 100%;
 
-  .side-button {
+    .side-button {
+      background-color: #eee;
+      border: 1px solid black;
+      border-radius: 5px;
+      font-size: 125%;
+      font-weight: 300;
+      height: 50px;
+      line-height: 110%;
+      width: 50px;
+    }
+  }
+
+  #new-list {
     background-color: #eee;
     border: 1px solid black;
     border-radius: 5px;
+    bottom: 5px;
     font-size: 125%;
     font-weight: 300;
     line-height: 110%;
-    width: 50px;
-    height: 50px;
+    position:absolute;
+    right: 5px;
   }
 
 }
+
+#new-list-form {
+  background-color: #eee;
+  border: 1px solid black;
+  border-radius: 5px;
+  bottom: 7vh;
+  height: 80px;
+  left: 19vw;
+  position: absolute;
+  padding: 5px 10px 10px 10px;
+  z-index: 1000;
+
+  h4 {
+    padding: 0 30%;
+  }
+
+  .submit {
+    background-color: #eee;
+    border: 1px solid black;
+    border-radius: 3px;
+  }
+}
+
 

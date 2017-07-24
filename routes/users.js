@@ -31,6 +31,10 @@ module.exports = (db) => {
     db.findInTable("users", "name", user)
       .then((results) => {
         console.log('found');
+        if (!results.length) {
+          res.json({message: "username or password incorrect", id: req.session.userId});
+          return;
+        }
         if (!user) {
           res.json({message: "username and password cannot be empty", id: req.session.userId})
           return;
