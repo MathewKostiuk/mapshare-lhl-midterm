@@ -70,8 +70,14 @@ function setMarkers(map, items) {
           var editString = `<form action='/items/edit' method='POST' id='edit-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
           infowindow.setContent(editString);
 
+            google.maps.event.addListener(infowindow, 'closeclick', function() {
+            event.preventDefault();
+            infowindow.setContent(content);
+          })
+
           $('#edit-item').on('submit', function(event) {
             event.preventDefault();
+            infowindow.close();
             var $protoForm = $(this).serialize();
             var $form = $protoForm + '&id=' + editElement;
             var markers = markerArray[0];
@@ -80,9 +86,15 @@ function setMarkers(map, items) {
                 if (response.message) {
                   $.flash(response.message);
                 }
-              }).then(closeTextBox());
+              }).then(closeInfos());
           });
         });
+
+        $('.deleteMe').click(function() {
+          infowindow.close();
+          console.log(editElement);
+          var deleteUrl =
+        })
       };
     }(marker, infowindow)));
   }
