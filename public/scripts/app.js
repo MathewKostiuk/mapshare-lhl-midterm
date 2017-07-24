@@ -10,7 +10,6 @@ var textBox = [];
 var markerArray = [];
 var editElement = '';
 
-
 function closeInfos() {
   if (infos.length > 0) {
     infos[0].set("marker", null);
@@ -59,6 +58,7 @@ function setMarkers(map, items) {
       return function() {
         closeInfos();
         infowindow.open(map, marker);
+        currentMarker = marker;
         infos[0] = infowindow;
         var content = infowindow.content;
         var el = $('<div></div>');
@@ -66,13 +66,20 @@ function setMarkers(map, items) {
         var $edit = $('.modify-item', el).text();
         editElement = $edit;
         var itemUrl = '/items/' + editElement
-
         $('.editMe').click(function() {
           var editString = `<form action='${itemUrl}' method='POST' id='edit-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
           infowindow.setContent(editString);
+          google.maps.event.addListener(infowindow, 'closeclick', function() {
+            event.preventDefault();
+            infowindow.setContent(content);
+          })
           $('#edit-item').on('submit', editItem);
-
         });
+        $('.deleteMe').click(function() {
+          console.log('hey!');
+          console.log($edit);
+          closeInfos();
+        })
 
 
       };
@@ -81,38 +88,12 @@ function setMarkers(map, items) {
   map.fitBounds(bounds);
 }
 
-
-    google.maps.event.addListener(marker, 'click', (function(marker, infowindow){
-      return function() {
-        closeInfos();
-        infowindow.open(map, marker);
-        infos[0] = infowindow;
-        var content = infowindow.content;
-        var el = $('<div></div>');
-        el.html(content);
-        var $edit = $('.modify-item', el).text();
-        editElement = $edit;
-        var itemUrl = '/items/' + editElement
-
-        $('.editMe').click(function() {
-          var editString = `<form action='${itemUrl}' method='POST' id='edit-item'><input name='name' type='name' id='markerName' placeholder='Name:'><br><input name='description' type='text' id='markerDescription' placeholder='Description:'><br><input name='img' type='url' id='markerImage' placeholder='http://imgurl.com'><br><input type='submit' value='Submit'/></form>`;
-          infowindow.setContent(editString);
-          $('#edit-item').on('submit', editItem);
-
-        });
-
-
-      };
-    }(marker, infowindow)));
-  }
-  map.fitBounds(bounds);
-}
 
 function editItem(event) {
   event.preventDefault();
   var $protoForm = $(this).serialize();
   var $form = $protoForm + '&id=' + editElement;
-  var itemUrl = '/items/' + editElement
+  var itemUrl = '/items/edit'
 
   var markers = markerArray[0];
   var result = '';
@@ -128,7 +109,10 @@ function editItem(event) {
       if (response.message) {
         $.flash(response.message);
       }
-    }).then(closeTextBox());
+    }).then(closeInfos());
+}
+
+function deleteItem() {
 
 }
 
