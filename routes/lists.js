@@ -31,7 +31,8 @@ module.exports = (db) => {
   router.post("/new", (req, res) => {
     const newList = {
       id: db.generateRandomString(),
-      name: req.body.name
+      name: req.body.name,
+      creator_id: req.session.userId
     };
     db.addToTable("lists", newList);
   });

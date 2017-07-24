@@ -112,29 +112,23 @@ nav.nav-bar {
   height: 75vh;
 }
 
-#list-container {
-  padding-left: 40px;
+.bar-left #side-button-container {
+  left: 0;
   width: 100%;
 }
 
-#side-button-container {
-  left: 0;
-  position: absolute;
-  width: 50px;
-}
-
-#side-button-container .side-button {
+.bar-left #side-button-container .side-button {
   background-color: #eee;
   border: 1px solid black;
   border-radius: 5px;
   font-size: 125%;
   font-weight: 300;
   line-height: 110%;
-  width: 100%;
+  width: 50px;
   height: 50px;
 }
 
-#side-button-container #fav-button {
-  font-size: 200%;
-  font-weight: 100;
+.bar-left #list-container {
+  padding: 10px;
+  width: 100%;
 }

@@ -1,8 +1,3 @@
-const $form = $("#register-form");
-$form.on("submit", function(event) {
-  event.preventDefault();
-});
-
 var map;
 var markerCount = [];
 var infos = [];
@@ -79,7 +74,7 @@ function setMarkers(map, items) {
                 if (response.message) {
                   $.flash(response.message);
                 }
-              }).then(closeTextBox());
+              }).then(closeTextBox);
           });
         });
       };
