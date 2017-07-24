@@ -29,4 +29,8 @@ $(function() {
     utils.request("GET", "/lists/user").then(buildList);
   });
 
+  $("#new-list-form").on("submit", function(event) {
+    utils.request("GET", "/lists").then(buildList).then(initMap)
+  })
+
 });

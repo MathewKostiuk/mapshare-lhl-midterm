@@ -78,7 +78,11 @@
                 <% } %> -->
               </div>
               <div id="list-container"></div>
-              <button id="new-list">New Map</button>
+              <% if (!id) { %>
+                <button id="new-list" class="hidden">New Map</button>
+              <% } else { %>
+                <button id="new-list">New Map</button>
+              <% } %>
             </div>
             <form id="new-list-form" class="hidden" action="lists/new" method="POST">
               <h4>New Map</h4>

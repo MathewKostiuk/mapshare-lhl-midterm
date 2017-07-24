@@ -4,6 +4,7 @@ var toggleButtons = function() {
   $("#logout-button").toggleClass("hidden");
   $("#fav-button").toggleClass("hidden");
   $("#my-button").toggleClass("hidden");
+  $("#new-list").toggleClass("hidden");
 };
 
 $(function() {
@@ -84,5 +85,5 @@ $(function() {
         $("#new-list-form")[0].reset();
         $("#new-list-form").toggleClass("hidden");
       });
-
+  });
 });
