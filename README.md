@@ -19,6 +19,7 @@
   - Check the seeds file to see what gets seeded in the DB
 7. Run the server: `npm run local`
 8. Visit `http://localhost:8080/`
+9. Right-click to create a new marker once you have selected a list
 
 ## Dependencies
 
