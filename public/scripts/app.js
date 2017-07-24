@@ -5,6 +5,7 @@ var textBox = [];
 var markerArray = [];
 var editElement = '';
 
+// Infos refers to map markers
 function closeInfos() {
   if (infos.length > 0) {
     infos[0].set("marker", null);
@@ -12,7 +13,7 @@ function closeInfos() {
     infos.length = 0;
   }
 }
-
+// textBox refers to the form for new list items
 function closeTextBox(){
 
   if(textBox.length > 0){
@@ -33,6 +34,7 @@ function setMarkers(map, items) {
     return;
   }
 
+
   var bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < items.length; i++) {
     var infowindow = new google.maps.InfoWindow();
@@ -46,15 +48,17 @@ function setMarkers(map, items) {
     bounds.extend(marker.position);
 
 
-    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'><p class='modify-item'>${item.id}</p><button class='editMe' type='button'>Edit</button><button class='deleteMe' type='button'>Delete</button><p>${item.latitude}</p><p>${item.longitude}</p>`;
+
+    var contentString = `<p>${item.name}</p><p>${item.description}</p><img src='${item.image_url}'><p class='modify-item' style='visibility: hidden;'>${item.id}</p><button class='editMe' type='button'>Edit</button><button class='deleteMe' type='button'>Delete</button><p class='hidden'>${item.latitude}</p><p class='hidden'>${item.longitude}</p>`;
     marker.setMap(map);
     infowindow.setContent(contentString);
     google.maps.event.addListener(marker, 'click', (function(marker, infowindow){
       return function() {
         closeInfos();
         infowindow.open(map, marker);
-        currentMarker = marker;
         infos[0] = infowindow;
+
+        // Set all html info to 'content', use 'el' to hold html info then target .modify-item to extract item ID. editElement stores the item ID of the last clicked item in a global variable
         var content = infowindow.content;
         var el = $('<div></div>');
         el.html(content);
@@ -72,7 +76,7 @@ function setMarkers(map, items) {
 
           $('#edit-item').on('submit', function(event) {
             event.preventDefault();
-            infowindow.close();
+            closeTextBox();
             var $protoForm = $(this).serialize();
             var $form = $protoForm + '&id=' + editElement;
             var markers = markerArray[0];
@@ -91,8 +95,8 @@ function setMarkers(map, items) {
         });
 
         $('.deleteMe').click(function() {
+          event.preventDefault();
           infowindow.close();
-          console.log(editElement);
           var deleteUrl = '/items/' + editElement + '/delete';
           utils.request("GET", deleteUrl)
             .then(function(response) {
