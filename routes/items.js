@@ -6,7 +6,7 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/:id/delete", (req, res) => {
-    const id = ["id", req.params.id];
+    const id = {id: req.params.id};
     db.deleteFromTable("items", id);
   })
 
