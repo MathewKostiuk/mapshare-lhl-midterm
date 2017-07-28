@@ -4,6 +4,13 @@
 ![MapShare](public/images/screenshot-3.png?raw=true)
 
 
+## Technologies Used
+1. Node.js
+2. Express
+3. Knex
+4. HTML/CSS (SASS)
+5. jQuery 
+
 
 ## Getting Started
 
